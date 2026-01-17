@@ -4,6 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Gruppenführer – Eingangstest (Lernmodus)</title>
+
+  <!-- iOS "Web-App" (muss im HEAD stehen) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GF-Quiz">
+
   <style>
     :root{
       --bg:#0b0f14; --card:#121926; --text:#e9eef6; --muted:#a9b4c3;
@@ -88,9 +94,7 @@
     .hint{ color:var(--muted); font-size:12px; margin-top:8px; line-height:1.35; }
   </style>
 </head>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="GF-Quiz">
+
 <body>
 <div class="wrap">
   <header>
@@ -100,10 +104,10 @@
         Wahl zwischen <b>16 Zufallsfragen (Prüfmodus)</b> und <b>vollständigem Fragenpool</b>.
         Zusätzlich: <b>Lernteil</b> mit „das muss ich können“-Checkliste.
       </div>
+      <div class="sub" style="margin-top:8px;">
+        © <span id="year"></span> Fabian Russ • Feuerwehr Eschenbach
+      </div>
     </div>
-<div class="sub" style="margin-top:8px;">
-  © <span id="year"></span> Fabian Russ • Feuerwehr Eschenbach
-</div>
 
     <div class="controls">
       <select id="scope">
@@ -158,8 +162,8 @@
         <div class="learncard">
           <div style="font-weight:900; font-size:15px;">Lernplan – „Das muss ich können“</div>
           <div class="hint">
-            Nutze die Checkliste als Wiederholungsfahrplan. Ziel: Jede Rubrik so beherrschen, dass du sie
-            als Gruppenführer in 30–60 Sekunden erklären oder als Befehl formulieren kannst.
+            Ziel: Jede Rubrik so beherrschen, dass du sie als Gruppenführer in 30–60 Sekunden erklären
+            oder als Befehl formulieren kannst.
           </div>
         </div>
 
@@ -168,7 +172,7 @@
           <ul>
             <li>Einsatzablauf Gruppe im Lösch- und Hilfeleistungseinsatz erklären (wer macht was, wann, warum).</li>
             <li>Befehl strukturiert geben (Lage – Auftrag – Mittel – Weg – Ziel).</li>
-            <li>„Mit Bereitstellung“ sauber erklären: ausrüsten, bereit halten, keine Eigeninitiative ohne Befehl.</li>
+            <li>„Mit Bereitstellung“: ausrüsten, bereit halten, keine Eigeninitiative ohne Befehl.</li>
           </ul>
           <label class="check"><input type="checkbox"> Ich kann einen vollständigen Gruppenführer-Befehl fehlerfrei formulieren.</label>
           <label class="check"><input type="checkbox"> Ich kann „Bereitstellung“ + typische Einsatzanlässe erklären.</label>
@@ -178,9 +182,9 @@
           <summary>FwDV/DV 810 – Funk: Aufbau, Grundsätze, TMO/DMO</summary>
           <ul>
             <li>Funkspruch-Aufbau: Gegenstelle – von – eigener Rufname – Nachricht – „Kommen“.</li>
-            <li>Gruppenkommunikation ist Standard; Einzelruf nur taktisch zwingend.</li>
-            <li>TMO (Netzbetrieb) vs. DMO (Direktbetrieb), inkl. Konsequenzen/Limitierungen.</li>
-            <li>Rufgruppenwechsel nur auf Weisung; verständliche, kurze, präzise Sprache; keine Namen/Abkürzungen.</li>
+            <li>Grundsätzlich Gruppenruf; Einzelruf nur, wenn taktisch zwingend.</li>
+            <li>TMO (Netzbetrieb) bevorzugt; DMO bei taktischer Notwendigkeit oder unzureichender Versorgung.</li>
+            <li>Rufgruppenwechsel nur auf Weisung; kurze, präzise Sprache.</li>
           </ul>
           <label class="check"><input type="checkbox"> Ich kann einen korrekten Funkspruch inkl. Empfangsbestätigung absetzen.</label>
           <label class="check"><input type="checkbox"> Ich kann TMO/DMO praxisnah erklären (wann nutze ich was?).</label>
@@ -193,15 +197,15 @@
             <li>Sicherheitstrupp: Aufgabe & Bereitstellung.</li>
             <li>Verhalten bei Atemkrise/Stress: stehen bleiben, ruhig/tief atmen, melden.</li>
           </ul>
-          <label class="check"><input type="checkbox"> Ich kenne die Abbruchkriterien (Warnsignal/Notfallindikatoren) und Reaktion.</label>
+          <label class="check"><input type="checkbox"> Ich kenne Abbruch-/Notfallindikatoren und kann die Reaktion erklären.</label>
         </details>
 
         <details>
           <summary>FwDV 10 – Tragbare Leitern</summary>
           <ul>
-            <li>Anstellwinkel 65–75°; sicherer Auflagepunkt; Leiterfuß sichern; Absicherung Verkehrsweg.</li>
-            <li>Überstand: mind. 1 m / 3 Sprossen (sofern keine gleichwertige Haltemöglichkeit).</li>
-            <li>Kommandos und Grundsätze (Strahlrohr-Einsatz von Leiter nur unter Bedingungen, Sicherung beachten).</li>
+            <li>Anstellwinkel 65–75°; sichere Auflagepunkte; Leiterfuß sichern; Verkehrswege absichern.</li>
+            <li>Überstand: mind. 1 m / 3 Sprossen (wenn keine gleichwertige Haltemöglichkeit).</li>
+            <li>Kommandos durch den Truppführer.</li>
           </ul>
           <label class="check"><input type="checkbox"> Ich kann Anstellwinkel/Überstand und die Begründung nennen.</label>
         </details>
@@ -210,7 +214,6 @@
           <summary>FwDV 2 – Brennen & Löschen / Löschmittelwahl</summary>
           <ul>
             <li>Verbrennungsvoraussetzungen: Brennstoff – Sauerstoff – Zündenergie; bei Flüssigkeiten brennen Dämpfe.</li>
-            <li>Grundlagen Flashover/Backdraft (Prinzip, Indikatoren, Gefahr).</li>
             <li>Löschmittelwahl nach Brandklasse (insb. Fettbrandklasse F).</li>
           </ul>
           <label class="check"><input type="checkbox"> Ich kann Brandklassen + passendes Löschmittel begründen.</label>
@@ -219,8 +222,8 @@
         <details>
           <summary>Gefahren an Einsatzstellen – AAAACEEEE</summary>
           <ul>
-            <li>Gefahren systematisch nennen und Maßnahmen ableiten (u. a. Atemgifte, Angstreaktion, Ausbreitung, Atomar, Chemisch, Elektrizität, Explosion, Einsturz, Erkrankung/Infektion).</li>
-            <li>„Erkennen – Melden – Sichern“ als Grundmuster.</li>
+            <li>Gefahren systematisch erkennen/benennen und Maßnahmen ableiten.</li>
+            <li>Grundmuster: Erkennen – Melden – Sichern.</li>
           </ul>
           <label class="check"><input type="checkbox"> Ich kann das Schema erklären und je Buchstabe 1–2 Maßnahmen nennen.</label>
         </details>
@@ -228,8 +231,8 @@
         <details>
           <summary>TH – Rettungsgrundsatz / Personenbetreuung</summary>
           <ul>
-            <li>Rettungsgrundsatz: Retten – Stabilisieren – Befreien.</li>
-            <li>Umgang mit ansprechbaren / bewusstlosen Personen (Basisprinzipien: Eigenschutz, Atemwege, Betreuung, Übergabe RD).</li>
+            <li>Rettungsgrundsatz (vollständig): Sichern – Zugang schaffen – lebensrettende Sofortmaßnahmen – Befreien – Übergabe RD.</li>
+            <li>Umgang mit ansprechbaren/bewusstlosen Personen: Eigenschutz, Atemwege, Betreuung, Übergabe RD.</li>
           </ul>
           <label class="check"><input type="checkbox"> Ich kann den Rettungsgrundsatz auf einen VU anwenden (kurzes Vorgehensschema).</label>
         </details>
@@ -237,8 +240,8 @@
         <details>
           <summary>Bahnanlagen / Gefahrgut</summary>
           <ul>
-            <li>Bahnanlagen: Zugverkehr einstellen lassen (zuständige Bahn-/Notfallleitstelle), Sicherheitsabstände, Oberleitung als Hochspannungsgefahr.</li>
-            <li>Gefahrgut: GAMS-Grundsatz, Sofortdekontamination als Expositionsreduktion (einfach, schnell, wirksam).</li>
+            <li>Bahnanlagen: Zugverkehr einstellen lassen; Sicherheitsabstände; Oberleitung als Hochspannungsgefahr.</li>
+            <li>Gefahrgut: GAMS (Gefahr erkennen – Absperren – Menschenrettung – Spezialkräfte) + Sofortdekontamination als Expositionsreduktion.</li>
           </ul>
           <label class="check"><input type="checkbox"> Ich kann „GAMS“ erklären und eine erste Maßnahmenkette formulieren.</label>
         </details>
@@ -249,14 +252,14 @@
 </div>
 
 <script>
+/* Jahreszahl */
+const yearEl = document.getElementById("year");
+if(yearEl) yearEl.textContent = new Date().getFullYear();
+
 /**
- * Fragenpool:
- * Du kannst diesen Pool jederzeit erweitern (einfach neue Objekte hinzufügen).
- * Das System kann dann entweder 16 zufällig ziehen oder „alle“ anzeigen.
- *
- * Modus:
- * - Prüfmodus: Feedback erst bei Gesamtauswertung
- * - Lernmodus: Feedback sofort nach Auswahl
+ * Fragenpool (32)
+ * - random16: zieht 16 zufällig
+ * - all: kompletter Pool
  */
 const QUESTIONS_POOL = [
   {
@@ -271,7 +274,7 @@ const QUESTIONS_POOL = [
       "Erkundung – Angriff – Rückzug"
     ],
     correct: 1,
-    explain: "Führungsvorgang: Lagefeststellung (Erkundung/Kontrolle), Planung (Beurteilung/Entschluss), Befehlsgebung."
+    explain: "Führungsvorgang: Lagefeststellung, Planung (Beurteilung/Entschluss), Befehlsgebung."
   },
   {
     id: "q2",
@@ -294,17 +297,17 @@ const QUESTIONS_POOL = [
     text: "Wie ist der Aufbau eines Funkspruchs korrekt?",
     options: [
       "Eigener Rufname – Gegenstelle – Inhalt – Ende",
-      "Gegenstelle – von – Eigener Rufname – Nachricht – Kommen",
-      "Inhalt – Gegenstelle – Eigener Rufname – Ende",
+      "Gegenstelle – von – eigener Rufname – Nachricht – Kommen",
+      "Inhalt – Gegenstelle – eigener Rufname – Ende",
       "Gegenstelle – Inhalt – Ende"
     ],
     correct: 1,
-    explain: "Standardaufbau im Sprechfunk: Gegenstelle, „von“, eigener Rufname, Nachricht, „Kommen“."
+    explain: "Standardaufbau: Gegenstelle, „von“, eigener Rufname, Nachricht, „Kommen“."
   },
   {
     id: "q4",
     area: "Sprechfunk – Rufgruppenwechsel",
-    source: "LZK Sprechfunker / FwDV 810: Wechsel nur auf Anordnung",
+    source: "FwDV/DV 810: Wechsel nur auf Weisung",
     text: "Wann darf ein Rufgruppenwechsel durchgeführt werden?",
     options: [
       "Jederzeit",
@@ -313,12 +316,12 @@ const QUESTIONS_POOL = [
       "Sobald der Empfang schlechter wird"
     ],
     correct: 1,
-    explain: "Rufgruppenwechsel nur auf besondere Weisung, mit Ankündigung/Bestätigung (Funkdisziplin)."
+    explain: "Rufgruppenwechsel nur auf besondere Weisung und mit Ankündigung/Bestätigung."
   },
   {
     id: "q5",
     area: "Atemschutz – Grundsatz",
-    source: "FwDV 7 / AGT: Vorgehen truppweise",
+    source: "FwDV 7: Vorgehen truppweise",
     text: "Welcher Grundsatz gilt im Atemschutzeinsatz immer?",
     options: [
       "Getrennt vorgehen, um schneller zu sein",
@@ -327,7 +330,7 @@ const QUESTIONS_POOL = [
       "Atemschutz nur mit Wärmebildkamera"
     ],
     correct: 1,
-    explain: "Unter Atemschutz grundsätzlich truppweise (Eigensicherung, Hilfeleistung im Notfall)."
+    explain: "Unter Atemschutz grundsätzlich truppweise (Eigensicherung/Notfallhilfe)."
   },
   {
     id: "q6",
@@ -350,13 +353,13 @@ const QUESTIONS_POOL = [
     text: "Welcher Anstellwinkel ist für Anlegeleitern einzuhalten?",
     options: ["45°–55°","55°–65°","65°–75°","75°–85°"],
     correct: 2,
-    explain: "FwDV 10 nennt 65°–75° als sicheren Anstellwinkel."
+    explain: "Sicherer Anstellwinkel: 65°–75°."
   },
   {
     id: "q8",
     area: "FwDV 10 – Überstand",
     source: "FwDV 10: mind. 1 m / 3 Sprossen",
-    text: "Wie weit soll eine Anlegeleiter mindestens über die Austrittsstelle hinausragen?",
+    text: "Wie weit soll eine Anlegeleiter mindestens über die Austrittsstelle hinausragen (wenn keine gleichwertige Haltemöglichkeit vorhanden ist)?",
     options: [
       "Mind. 50 cm",
       "Mind. 1 m bzw. mind. drei Sprossen",
@@ -364,12 +367,12 @@ const QUESTIONS_POOL = [
       "Mind. 2 m"
     ],
     correct: 1,
-    explain: "Regel: mind. 1 m / 3 Sprossen über Austritt, sofern keine gleichwertige Haltemöglichkeit besteht."
+    explain: "Regel: mind. 1 m/3 Sprossen; sonst nur bis Überstieg, wenn gleichwertige Haltemöglichkeit besteht."
   },
   {
     id: "q9",
     area: "Brennen & Löschen – Definition",
-    source: "TrM1-LZK: Verbrennung",
+    source: "Grundausbildung: Verbrennung",
     text: "Welche Aussage beschreibt eine Verbrennung korrekt?",
     options: [
       "Verbrennung ist immer eine Explosion",
@@ -378,12 +381,12 @@ const QUESTIONS_POOL = [
       "Rein physikalischer Vorgang ohne Chemie"
     ],
     correct: 1,
-    explain: "Feuerwehr-Grunddefinition: chemische Reaktion Brennstoff + O2, Wärme (und oft Licht) entsteht."
+    explain: "Verbrennung = chemische Reaktion Brennstoff + Sauerstoff mit Energieabgabe."
   },
   {
     id: "q10",
     area: "Brennen & Löschen – Flüssigkeiten",
-    source: "TrM1-LZK: Es brennen die Dämpfe",
+    source: "Grundausbildung: Es brennen die Dämpfe",
     text: "Was brennt bei brennbaren Flüssigkeiten in der Regel?",
     options: [
       "Die Flüssigkeit selbst",
@@ -397,7 +400,7 @@ const QUESTIONS_POOL = [
   {
     id: "q11",
     area: "Löschmittelwahl – Fettbrand",
-    source: "Brandklassen/Löschmittelzuordnung (Truppführer/Grundausbildung)",
+    source: "Brandklassen/Löschmittelzuordnung",
     text: "Welches Löschmittel ist für einen Fettbrand (z. B. Fritteuse) am geeignetsten?",
     options: [
       "Wasserstrahl",
@@ -406,7 +409,7 @@ const QUESTIONS_POOL = [
       "Pulverlöscher (ABC) immer bevorzugt"
     ],
     correct: 2,
-    explain: "Fettbrandlöscher sind für Brandklasse F ausgelegt; Wasser kann Fettexplosion auslösen."
+    explain: "Für Brandklasse F: Fettbrandlöscher; Wasser ist gefährlich (Fettexplosion)."
   },
   {
     id: "q12",
@@ -415,21 +418,21 @@ const QUESTIONS_POOL = [
     text: "Wofür steht das erste „E“ im AAAACEEEE-Gefahrenschema?",
     options: ["Explosion","Elektrizität","Ersticken","Epidemie"],
     correct: 1,
-    explain: "„E“ umfasst u. a. Elektrizität (Leitungen/Anlagen unter Spannung) als wesentliche Einsatzstellengefahr."
+    explain: "„E“ umfasst u. a. Elektrizität als Einsatzstellengefahr."
   },
   {
     id: "q13",
     area: "TH – Rettungsgrundsatz",
-    source: "FwDV 2 / Grundausbildung TH",
-    text: "Welche Reihenfolge entspricht dem Rettungsgrundsatz im TH-Einsatz?",
+    source: "Grundausbildung TH: Rettungsgrundsatz (vollständig)",
+    text: "Welche Abfolge entspricht dem Rettungsgrundsatz im technischen Hilfeleistungseinsatz?",
     options: [
-      "Befreien – Stabilisieren – Retten",
-      "Retten – Befreien – Stabilisieren",
-      "Retten – Stabilisieren – Befreien",
-      "Stabilisieren – Bergen – Retten"
+      "Sichern – Zugang schaffen – Lebensrettende Sofortmaßnahmen – Befreien – Übergabe an den Rettungsdienst",
+      "Retten – Stabilisieren – Bergen",
+      "Befreien – Retten – Absichern",
+      "Zugang schaffen – Bergen – Retten"
     ],
-    correct: 2,
-    explain: "Rettungsgrundsatz: Retten (Sofortmaßnahmen), Stabilisieren, Befreien."
+    correct: 0,
+    explain: "Rettungsgrundsatz im TH: Sichern, Zugang schaffen, lebensrettende Sofortmaßnahmen, Befreien, Übergabe an RD."
   },
   {
     id: "q14",
@@ -443,7 +446,7 @@ const QUESTIONS_POOL = [
       "Lage – Ziel – Mittel – Rückweg"
     ],
     correct: 1,
-    explain: "Klare Befehlsstruktur: Lage, Auftrag, Mittel, Weg, Ziel."
+    explain: "Befehl: Lage, Auftrag, Mittel, Weg, Ziel."
   },
   {
     id: "q15",
@@ -457,16 +460,233 @@ const QUESTIONS_POOL = [
       "Nur Lüfter einsetzen, bevor Türen geöffnet werden"
     ],
     correct: 1,
-    explain: "Grundsatz zielt auf Eigenschutz und taktische Sicherheit (Rückzugsweg, Absicherung, Gefahrenbewusstsein)."
+    explain: "Gemeint ist v. a. taktischer Eigenschutz und sichere Vorgehensweise."
   },
   {
     id: "q16",
     area: "Gefahrgut – GAMS",
-    source: "Online-Phase GF: GAMS-Grundsatz",
-    text: "Welche Maßnahme steht im Gefahrguteinsatz nach dem GAMS-Grundsatz typischerweise an erster Stelle?",
-    options: ["Messen","Absperren","Sofortdekontamination","Sammelplatz einrichten"],
+    source: "GAMS: Grundsatz im Gefahrguteinsatz",
+    text: "Was ist der erste Schritt im GAMS-Grundsatz bei Gefahrguteinsätzen?",
+    options: [
+      "Gefahr erkennen",
+      "Absperren",
+      "Menschenrettung",
+      "Spezialkräfte nachfordern"
+    ],
+    correct: 0,
+    explain: "GAMS beginnt mit „Gefahr erkennen“, dann Absperren, Menschenrettung, Spezialkräfte."
+  },
+
+  /* --- Erweiterung q17–q32 --- */
+
+  {
+    id: "q17",
+    area: "FwDV/DV 810 – Gruppenruf vs. Einzelruf",
+    source: "DV 810: grundsätzlich Gruppenruf",
+    text: "Welche Aussage trifft auf den Sprechfunkverkehr im Einsatz grundsätzlich zu?",
+    options: [
+      "Einzelruf ist Standard, Gruppenruf nur bei Übungen",
+      "Grundsätzlich Gruppenruf; Einzelruf nur, wenn taktisch unbedingt erforderlich",
+      "Immer Sammelruf an alle BOS",
+      "Einzelruf ist vorzuziehen, um Funkverkehr zu reduzieren"
+    ],
     correct: 1,
-    explain: "Nach Gefahrenerkennung ist Absperren zentral, um Exposition zu verhindern und den Bereich zu kontrollieren."
+    explain: "Grundsatz: Gruppenruf ist Standard; Einzelruf nur, wenn taktisch zwingend."
+  },
+  {
+    id: "q18",
+    area: "FwDV/DV 810 – Gesprächsende",
+    source: "DV 810: Gespräch wird mit „Ende“ beendet",
+    text: "Mit welchem Wort beendet der Anrufende ein Funkgespräch korrekt?",
+    options: ["Schluss", "Over", "Ende", "Aus"],
+    correct: 2,
+    explain: "Das Gespräch wird durch den Anrufenden mit „Ende“ beendet."
+  },
+  {
+    id: "q19",
+    area: "FwDV/DV 810 – TMO/DMO",
+    source: "DV 810: TMO bevorzugt, DMO bei Notwendigkeit/fehlender Versorgung",
+    text: "Welche Aussage zu TMO und DMO ist korrekt?",
+    options: [
+      "DMO ist grundsätzlich zu bevorzugen, weil es schneller ist",
+      "TMO wird bevorzugt; DMO bei taktischer Notwendigkeit oder unzureichender Funkversorgung",
+      "TMO funktioniert nur im Gebäude",
+      "DMO ist nur für Leitstellen reserviert"
+    ],
+    correct: 1,
+    explain: "Kommunikation vorzugsweise im Netzbetrieb (TMO); bei Bedarf/fehlender Versorgung DMO."
+  },
+  {
+    id: "q20",
+    area: "FwDV 10 – Einordnung Leitern",
+    source: "FwDV 10: Tragbare Leitern sind Rettungsgeräte",
+    text: "Zu welcher Gerätegruppe gehören tragbare Leitern nach FwDV 10?",
+    options: ["Angriffsgeräte", "Rettungsgeräte", "Absperrgeräte", "Messgeräte"],
+    correct: 1,
+    explain: "Tragbare Leitern gehören zur Gruppe der Rettungsgeräte."
+  },
+  {
+    id: "q21",
+    area: "FwDV 10 – Kommandos",
+    source: "FwDV 10: Kommandos gibt der Truppführer",
+    text: "Wer gibt bei der Vor- und Rücknahme tragbarer Leitern die Kommandos?",
+    options: ["Maschinist", "Gruppenführer", "Truppführer", "Melder"],
+    correct: 2,
+    explain: "Kommandos gibt der Truppführer, der den Befehl vom Einheitsführer erhalten hat."
+  },
+  {
+    id: "q22",
+    area: "FwDV 10 – Einsatzmöglichkeiten",
+    source: "FwDV 10: Rettungsweg, Angriffsweg, Hilfsgerät",
+    text: "Wofür können tragbare Leitern eingesetzt werden?",
+    options: [
+      "Nur als Rettungsweg",
+      "Rettungsweg, Angriffsweg und Hilfsgerät",
+      "Nur als Angriffsweg",
+      "Nur als Arbeitsplattform"
+    ],
+    correct: 1,
+    explain: "Tragbare Leitern: Rettungsweg, Angriffsweg und Hilfsgerät."
+  },
+  {
+    id: "q23",
+    area: "FwDV 100 – Lagebeschreibung",
+    source: "FwDV 100: Lagebeschreibung enthält u. a. Kräfte und Bereitstellung",
+    text: "Welche Information gehört nach FwDV 100 typischerweise in eine Lagebeschreibung?",
+    options: [
+      "Nur die Anschrift des Objekts",
+      "Nur die Wetterlage",
+      "Übersicht über Gefahren/Schäden sowie eingesetzte und in Bereitstellung stehende Kräfte/Mittel",
+      "Nur die Namen der Führungskräfte"
+    ],
+    correct: 2,
+    explain: "Lagebeschreibung: Gefahren/Schäden, Einsatzschwerpunkte, eingesetzte und bereitstehende Kräfte/Mittel."
+  },
+  {
+    id: "q24",
+    area: "FwDV 100 – Befehlsstruktur (erweitert)",
+    source: "FwDV 100: Gliederung des Befehls (Lage/Auftrag/Durchführung/Versorgung/Führung u. Kommunikation)",
+    text: "Welche Gliederung ist nach FwDV 100 für einen umfassenderen schriftlichen Befehl typisch?",
+    options: [
+      "Lage – Auftrag – Durchführung – Versorgung – Führung und Kommunikationswesen",
+      "Ziel – Zeit – Ort – Unterschrift",
+      "Auftrag – Lage – Rückweg",
+      "Erkundung – Angriff – Nachbereitung"
+    ],
+    correct: 0,
+    explain: "Erweiterte Gliederung: Lage, Auftrag, Durchführung, Versorgung, Führung/Kommunikationswesen."
+  },
+  {
+    id: "q25",
+    area: "Atemschutz – Einsatzvoraussetzungen",
+    source: "FwDV 7: Atemschutz bei Gefahr durch Atemgifte/Sauerstoffmangel",
+    text: "Wann müssen im Einsatz geeignete Atemschutzgeräte getragen werden?",
+    options: [
+      "Wenn es regnet",
+      "Wenn Sauerstoffmangel oder Einatmen gesundheitsschädlicher Stoffe (Atemgifte) möglich ist",
+      "Nur bei Kaminbränden",
+      "Nur wenn die Leitstelle es ausdrücklich anordnet"
+    ],
+    correct: 1,
+    explain: "Atemschutz ist erforderlich bei möglichem O2-Mangel oder Atemgiften."
+  },
+  {
+    id: "q26",
+    area: "Atemschutz – Einsatzberechtigung",
+    source: "FwDV 7: Anforderungen an AGT",
+    text: "Welche Aussage ist eine Voraussetzung, um als Atemschutzgeräteträger im Einsatz eingesetzt zu werden?",
+    options: [
+      "Beliebiges Alter, wenn fit",
+      "Mindestens 18 Jahre und erfolgreiche AGT-Ausbildung",
+      "Nur Gruppenführer dürfen PA tragen",
+      "G26 ist optional"
+    ],
+    correct: 1,
+    explain: "Voraussetzung u. a.: Mindestalter 18 und erfolgreiche Ausbildung (plus Eignung)."
+  },
+  {
+    id: "q27",
+    area: "Gefahren – Elektrizität (Grundprinzip)",
+    source: "Truppführer-LZK: Sicherheitsabstände/Elektrizität",
+    text: "Was ist bei wahrgenommener Gefahr durch Elektrizität an der Einsatzstelle vorrangig richtig?",
+    options: [
+      "Sofort mit Wasserstrahl löschen",
+      "Unverzüglich dem Einheitsführer melden und Sicherheitsabstände einhalten",
+      "Metallteile als Erdung einsetzen",
+      "Schnell das Objekt betreten, um Zeit zu sparen"
+    ],
+    correct: 1,
+    explain: "Elektrische Gefahr: melden und Abstand/Sicherung; weitere Maßnahmen lageabhängig."
+  },
+  {
+    id: "q28",
+    area: "Sprechfunk – Anrufantwort",
+    source: "DV 810: Anrufantwort „Hier … kommen“",
+    text: "Wie lautet eine korrekte Anrufantwort im Digitalfunk (Standard)?",
+    options: [
+      "„Ja, ich höre“",
+      "„Hier [eigener Rufname] – kommen“",
+      "„Verstanden – Ende“",
+      "„Sofort“"
+    ],
+    correct: 1,
+    explain: "Anrufantwort besteht aus „Hier“, eigenem Rufnamen und „Kommen“."
+  },
+  {
+    id: "q29",
+    area: "Sprechfunk – Empfangsbestätigung",
+    source: "DV 810: „Verstanden“ + Wiederholung wesentlicher Inhalte",
+    text: "Wie wird eine empfangene Nachricht korrekt bestätigt?",
+    options: [
+      "Mit „OK“ ohne Wiederholung",
+      "Mit „Verstanden“ und Wiederholung der wesentlichen Inhalte",
+      "Mit „Ende“",
+      "Gar nicht, um Funkzeit zu sparen"
+    ],
+    correct: 1,
+    explain: "Empfang bestätigen: „Verstanden“ + Wiederholung wesentlicher Inhalte."
+  },
+  {
+    id: "q30",
+    area: "Gefahrgut – Sofortdekontamination",
+    source: "Online-Phase GF: Sofortdekontamination",
+    text: "Was ist das Ziel einer Sofortdekontamination im Gefahrguteinsatz?",
+    options: [
+      "Vollständige Labor-Reinheit herstellen",
+      "Exposition schnell reduzieren (Kontamination verdünnen/abspülen), um Gesundheitsgefahr zu senken",
+      "Einsatzkräfte optisch reinigen",
+      "Nur Dokumentationspflicht erfüllen"
+    ],
+    correct: 1,
+    explain: "Sofortdekontamination dient der schnellen Expositionsreduktion."
+  },
+  {
+    id: "q31",
+    area: "Brennen & Löschen – Löschprinzip",
+    source: "Grundausbildung: Löschwirkungen",
+    text: "Welche Maßnahme entspricht dem Löschprinzip „Kühlen“ am ehesten?",
+    options: [
+      "Sauerstoff verdrängen (CO₂)",
+      "Wärme entziehen (z. B. Wasser zur Kühlung fester Stoffe)",
+      "Chemische Inhibition mit Pulver immer",
+      "Brennstoff zuführen"
+    ],
+    correct: 1,
+    explain: "„Kühlen“ = Wärme entziehen, Temperatur unter Zündtemperatur bringen."
+  },
+  {
+    id: "q32",
+    area: "FwDV 10 – Verkehrswege",
+    source: "FwDV 10: Leitern an Verkehrswegen absichern",
+    text: "Was ist beim Aufstellen von Leitern an oder auf Verkehrswegen besonders zu beachten?",
+    options: [
+      "Keine Absicherung nötig, Leiter ist sichtbar",
+      "Ausreichende Absicherung des Verkehrsbereichs",
+      "Leiterfuß auf Kisten stellen, damit es höher ist",
+      "Leiter immer waagerecht auflegen"
+    ],
+    correct: 1,
+    explain: "Leitern an Verkehrswegen müssen ausreichend abgesichert werden."
   }
 ];
 
@@ -474,9 +694,9 @@ const QUESTIONS_POOL = [
 const THRESH_GREEN_PCT = 0.90;
 const THRESH_YELLOW_PCT = 0.70;
 
-let activeQuestions = [];  // aktuelle Quizfragen (Array von Objekten)
-let quizOrder = [];        // Reihenfolge (Array von ids)
-let answers = {};          // id -> selectedIndex
+let activeQuestions = [];
+let quizOrder = [];
+let answers = {};
 let started = false;
 
 // ---------- Utilities ----------
@@ -531,7 +751,6 @@ function startQuiz(){
   const mode = document.getElementById("mode").value;   // exam | learn
   const doShuffle = document.getElementById("shuffle").checked;
 
-  // Fragenumfang wählen
   if(scope === "random16"){
     activeQuestions = sampleWithoutReplacement(QUESTIONS_POOL, 16);
   } else {
@@ -546,7 +765,7 @@ function startQuiz(){
   document.getElementById("result").style.display = "none";
 
   render();
-  updateScore(false); // im Prüfmodus keine Live-Ampel erforderlich, aber Score-Anzeige ok
+  updateScore(false);
   window.scrollTo({top:0, behavior:"smooth"});
 }
 
@@ -750,17 +969,15 @@ function updateScore(showTraffic){
 
   document.getElementById("scoreText").textContent = score.toString();
 
-  // Im Prüfmodus kannst du die Ampel erst am Ende zeigen – hier steuerbar:
   const mode = document.getElementById("mode").value;
   const allowTrafficNow = (mode === "learn") && showTraffic;
-
   setTraffic(score, activeQuestions.length, allowTrafficNow);
 }
 
 function finalize(){
   if(!started || activeQuestions.length === 0) return;
 
-  // Im Prüfmodus: jetzt Feedback zeigen
+  // Feedback immer anzeigen (Prüfmodus: erst jetzt)
   activeQuestions.forEach(q => showFeedback(q.id));
 
   let score = 0;

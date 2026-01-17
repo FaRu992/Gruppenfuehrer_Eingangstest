@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gruppenführer – Eingangstest (Lernmodus)</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#121926; --text:#e9eef6; --muted:#a9b4c3;
+      --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444; --line:#243044;
+      --btn:#1f2a3d; --btn2:#243044;
+    }
+    body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text); }
+    .wrap{ max-width:980px; margin:0 auto; padding:18px; }
+    header{ display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; justify-content:space-between; margin-bottom:14px; }
+    h1{ font-size:20px; margin:0; }
+    .sub{ color:var(--muted); font-size:13px; margin-top:6px; line-height:1.35; }
+    .controls{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    button, select{
+      background:var(--btn); color:var(--text); border:1px solid var(--line);
+      padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:600;
+    }
+    select{ cursor:pointer; }
+    button.secondary{ background:transparent; }
+    button:hover, select:hover{ background:var(--btn2); }
+    .panel{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; }
+
+    .tabs{ display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 14px; }
+    .tabbtn{ border-radius:999px; padding:9px 12px; }
+    .tabbtn.active{ outline:2px solid rgba(255,255,255,0.10); background:rgba(255,255,255,0.04); }
+
+    .meta{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin:10px 0 14px; }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 10px;
+      border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,0.02);
+      color:var(--muted); font-size:13px;
+    }
+    .traffic{ font-weight:800; }
+    .traffic.red{ color:var(--bad); }
+    .traffic.yellow{ color:var(--warn); }
+    .traffic.green{ color:var(--ok); }
+
+    .q{ padding:14px; border-radius:14px; border:1px solid var(--line); background:rgba(255,255,255,0.02); margin-bottom:12px; }
+    .qhead{ display:flex; gap:10px; justify-content:space-between; align-items:flex-start; }
+    .qno{ color:var(--muted); font-weight:700; min-width:58px; }
+    .qtext{ font-weight:700; line-height:1.35; flex:1; }
+    .src{ color:var(--muted); font-size:12px; margin-top:6px; }
+    .opts{ margin-top:10px; display:grid; gap:8px; }
+    label.opt{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px; border:1px solid var(--line); border-radius:12px; cursor:pointer;
+      background:rgba(0,0,0,0.10);
+    }
+    label.opt:hover{ background:rgba(255,255,255,0.04); }
+    input[type="radio"]{ margin-top:2px; }
+    .fb{ margin-top:10px; padding:10px; border-radius:12px; border:1px dashed var(--line); display:none; }
+    .fb.ok{ display:block; border-color:rgba(34,197,94,0.5); }
+    .fb.bad{ display:block; border-color:rgba(239,68,68,0.5); }
+    .fb .t{ font-weight:800; }
+    .fb .t.ok{ color:var(--ok); }
+    .fb .t.bad{ color:var(--bad); }
+    .fb .e{ margin-top:6px; color:var(--muted); line-height:1.35; }
+    .result{ margin-top:14px; }
+    .result h2{ margin:0 0 8px; font-size:16px; }
+    .small{ color:var(--muted); font-size:13px; line-height:1.35; }
+    .hr{ height:1px; background:var(--line); margin:12px 0; border:0; }
+    .toggle{
+      display:inline-flex; align-items:center; gap:8px; user-select:none;
+      padding:8px 10px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(255,255,255,0.02); color:var(--muted); font-size:13px;
+    }
+
+    /* Lernteil */
+    .learn{ display:none; }
+    .learn.active{ display:block; }
+    .learngrid{ display:grid; gap:12px; }
+    .learncard{
+      border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,0.02);
+      padding:12px;
+    }
+    details{
+      border:1px solid var(--line); border-radius:14px; background:rgba(0,0,0,0.10); padding:10px;
+    }
+    summary{ cursor:pointer; font-weight:800; }
+    ul{ margin:8px 0 0 18px; color:var(--muted); line-height:1.5; }
+    .check{ display:flex; gap:10px; align-items:flex-start; margin-top:8px; color:var(--muted); }
+    .check input{ margin-top:4px; }
+    .hint{ color:var(--muted); font-size:12px; margin-top:8px; line-height:1.35; }
+  </style>
+</head>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GF-Quiz">
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Gruppenführer – Eingangstest (Simulation)</h1>
+      <div class="sub">
+        Wahl zwischen <b>16 Zufallsfragen (Prüfmodus)</b> und <b>vollständigem Fragenpool</b>.
+        Zusätzlich: <b>Lernteil</b> mit „das muss ich können“-Checkliste.
+      </div>
+    </div>
+<div class="sub" style="margin-top:8px;">
+  © <span id="year"></span> Fabian Russ • Feuerwehr Eschenbach
+</div>
+
+    <div class="controls">
+      <select id="scope">
+        <option value="random16" selected>16 Fragen (zufällig)</option>
+        <option value="all">Kompletter Fragenpool</option>
+      </select>
+
+      <select id="mode">
+        <option value="exam" selected>Prüfmodus (Feedback erst am Ende)</option>
+        <option value="learn">Lernmodus (Feedback sofort)</option>
+      </select>
+
+      <label class="toggle" title="Reihenfolge mischen (bei 16 Zufallsfragen ohnehin zufällig)">
+        <input id="shuffle" type="checkbox" checked />
+        Reihenfolge mischen
+      </label>
+
+      <button onclick="startQuiz()">Quiz starten</button>
+      <button class="secondary" onclick="resetAll()">Reset</button>
+    </div>
+  </header>
+
+  <div class="panel">
+    <div class="tabs">
+      <button id="tabQuiz" class="tabbtn active" onclick="showTab('quiz')">Quiz</button>
+      <button id="tabLearn" class="tabbtn" onclick="showTab('learn')">Lernteil</button>
+    </div>
+
+    <div id="quizTab">
+      <div class="meta">
+        <div class="badge">Status: <span id="statusText">bereit</span></div>
+        <div class="badge">Punkte: <span id="scoreText">0</span> / <span id="totalText">0</span></div>
+        <div class="badge">Ampel:
+          <span id="traffic" class="traffic red">ROT</span>
+        </div>
+      </div>
+
+      <div id="quiz"></div>
+
+      <div class="result" id="result" style="display:none;">
+        <hr class="hr" />
+        <h2>Auswertung</h2>
+        <div class="small" id="summary"></div>
+        <div class="small" style="margin-top:10px;">
+          Ampellogik: <b>Grün ≥ 90%</b>, <b>Gelb 70–89%</b>, <b>Rot &lt; 70%</b>.
+        </div>
+      </div>
+    </div>
+
+    <div id="learnTab" class="learn">
+      <div class="learngrid">
+        <div class="learncard">
+          <div style="font-weight:900; font-size:15px;">Lernplan – „Das muss ich können“</div>
+          <div class="hint">
+            Nutze die Checkliste als Wiederholungsfahrplan. Ziel: Jede Rubrik so beherrschen, dass du sie
+            als Gruppenführer in 30–60 Sekunden erklären oder als Befehl formulieren kannst.
+          </div>
+        </div>
+
+        <details open>
+          <summary>FwDV 3 (Gruppe) – Einsatzablauf, Befehle, Bereitstellung</summary>
+          <ul>
+            <li>Einsatzablauf Gruppe im Lösch- und Hilfeleistungseinsatz erklären (wer macht was, wann, warum).</li>
+            <li>Befehl strukturiert geben (Lage – Auftrag – Mittel – Weg – Ziel).</li>
+            <li>„Mit Bereitstellung“ sauber erklären: ausrüsten, bereit halten, keine Eigeninitiative ohne Befehl.</li>
+          </ul>
+          <label class="check"><input type="checkbox"> Ich kann einen vollständigen Gruppenführer-Befehl fehlerfrei formulieren.</label>
+          <label class="check"><input type="checkbox"> Ich kann „Bereitstellung“ + typische Einsatzanlässe erklären.</label>
+        </details>
+
+        <details>
+          <summary>FwDV/DV 810 – Funk: Aufbau, Grundsätze, TMO/DMO</summary>
+          <ul>
+            <li>Funkspruch-Aufbau: Gegenstelle – von – eigener Rufname – Nachricht – „Kommen“.</li>
+            <li>Gruppenkommunikation ist Standard; Einzelruf nur taktisch zwingend.</li>
+            <li>TMO (Netzbetrieb) vs. DMO (Direktbetrieb), inkl. Konsequenzen/Limitierungen.</li>
+            <li>Rufgruppenwechsel nur auf Weisung; verständliche, kurze, präzise Sprache; keine Namen/Abkürzungen.</li>
+          </ul>
+          <label class="check"><input type="checkbox"> Ich kann einen korrekten Funkspruch inkl. Empfangsbestätigung absetzen.</label>
+          <label class="check"><input type="checkbox"> Ich kann TMO/DMO praxisnah erklären (wann nutze ich was?).</label>
+        </details>
+
+        <details>
+          <summary>FwDV 7 / AGT – Grundsätze Atemschutz</summary>
+          <ul>
+            <li>Truppweise vorgehen, Eigensicherung, Rückzugsweg, Kommunikation.</li>
+            <li>Sicherheitstrupp: Aufgabe & Bereitstellung.</li>
+            <li>Verhalten bei Atemkrise/Stress: stehen bleiben, ruhig/tief atmen, melden.</li>
+          </ul>
+          <label class="check"><input type="checkbox"> Ich kenne die Abbruchkriterien (Warnsignal/Notfallindikatoren) und Reaktion.</label>
+        </details>
+
+        <details>
+          <summary>FwDV 10 – Tragbare Leitern</summary>
+          <ul>
+            <li>Anstellwinkel 65–75°; sicherer Auflagepunkt; Leiterfuß sichern; Absicherung Verkehrsweg.</li>
+            <li>Überstand: mind. 1 m / 3 Sprossen (sofern keine gleichwertige Haltemöglichkeit).</li>
+            <li>Kommandos und Grundsätze (Strahlrohr-Einsatz von Leiter nur unter Bedingungen, Sicherung beachten).</li>
+          </ul>
+          <label class="check"><input type="checkbox"> Ich kann Anstellwinkel/Überstand und die Begründung nennen.</label>
+        </details>
+
+        <details>
+          <summary>FwDV 2 – Brennen & Löschen / Löschmittelwahl</summary>
+          <ul>
+            <li>Verbrennungsvoraussetzungen: Brennstoff – Sauerstoff – Zündenergie; bei Flüssigkeiten brennen Dämpfe.</li>
+            <li>Grundlagen Flashover/Backdraft (Prinzip, Indikatoren, Gefahr).</li>
+            <li>Löschmittelwahl nach Brandklasse (insb. Fettbrandklasse F).</li>
+          </ul>
+          <label class="check"><input type="checkbox"> Ich kann Brandklassen + passendes Löschmittel begründen.</label>
+        </details>
+
+        <details>
+          <summary>Gefahren an Einsatzstellen – AAAACEEEE</summary>
+          <ul>
+            <li>Gefahren systematisch nennen und Maßnahmen ableiten (u. a. Atemgifte, Angstreaktion, Ausbreitung, Atomar, Chemisch, Elektrizität, Explosion, Einsturz, Erkrankung/Infektion).</li>
+            <li>„Erkennen – Melden – Sichern“ als Grundmuster.</li>
+          </ul>
+          <label class="check"><input type="checkbox"> Ich kann das Schema erklären und je Buchstabe 1–2 Maßnahmen nennen.</label>
+        </details>
+
+        <details>
+          <summary>TH – Rettungsgrundsatz / Personenbetreuung</summary>
+          <ul>
+            <li>Rettungsgrundsatz: Retten – Stabilisieren – Befreien.</li>
+            <li>Umgang mit ansprechbaren / bewusstlosen Personen (Basisprinzipien: Eigenschutz, Atemwege, Betreuung, Übergabe RD).</li>
+          </ul>
+          <label class="check"><input type="checkbox"> Ich kann den Rettungsgrundsatz auf einen VU anwenden (kurzes Vorgehensschema).</label>
+        </details>
+
+        <details>
+          <summary>Bahnanlagen / Gefahrgut</summary>
+          <ul>
+            <li>Bahnanlagen: Zugverkehr einstellen lassen (zuständige Bahn-/Notfallleitstelle), Sicherheitsabstände, Oberleitung als Hochspannungsgefahr.</li>
+            <li>Gefahrgut: GAMS-Grundsatz, Sofortdekontamination als Expositionsreduktion (einfach, schnell, wirksam).</li>
+          </ul>
+          <label class="check"><input type="checkbox"> Ich kann „GAMS“ erklären und eine erste Maßnahmenkette formulieren.</label>
+        </details>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/**
+ * Fragenpool:
+ * Du kannst diesen Pool jederzeit erweitern (einfach neue Objekte hinzufügen).
+ * Das System kann dann entweder 16 zufällig ziehen oder „alle“ anzeigen.
+ *
+ * Modus:
+ * - Prüfmodus: Feedback erst bei Gesamtauswertung
+ * - Lernmodus: Feedback sofort nach Auswahl
+ */
+const QUESTIONS_POOL = [
+  {
+    id: "q1",
+    area: "FwDV 100 – Führungsvorgang",
+    source: "FwDV 100 (Lagefeststellung–Planung–Befehlsgebung)",
+    text: "Welche Abfolge beschreibt den Führungsvorgang nach FwDV 100 korrekt?",
+    options: [
+      "Entschluss – Kontrolle – Befehl",
+      "Lagefeststellung (Erkundung/Kontrolle) – Planung (Beurteilung/Entschluss) – Befehlsgebung",
+      "Befehlsgebung – Planung – Lagefeststellung",
+      "Erkundung – Angriff – Rückzug"
+    ],
+    correct: 1,
+    explain: "Führungsvorgang: Lagefeststellung (Erkundung/Kontrolle), Planung (Beurteilung/Entschluss), Befehlsgebung."
+  },
+  {
+    id: "q2",
+    area: "Erkundung – 4 Phasen",
+    source: "Online-Phase GF: Objekt–Schaden–Gefahren–Maßnahmen",
+    text: "Welche Reihenfolge entspricht der 4-Phasen-Erkundung (GF-Kontext)?",
+    options: [
+      "Schaden – Maßnahmen – Objekt – Gefahren",
+      "Objekt – Schaden – Gefahren – Maßnahmen",
+      "Gefahren – Objekt – Maßnahmen – Schaden",
+      "Maßnahmen – Schaden – Gefahren – Objekt"
+    ],
+    correct: 1,
+    explain: "Struktur: Objekt → Schaden → Gefahren → Maßnahmen."
+  },
+  {
+    id: "q3",
+    area: "Sprechfunk – Funkspruchaufbau",
+    source: "FwDV/DV 810: Gegenstelle–von–eigener Rufname–Nachricht–Kommen",
+    text: "Wie ist der Aufbau eines Funkspruchs korrekt?",
+    options: [
+      "Eigener Rufname – Gegenstelle – Inhalt – Ende",
+      "Gegenstelle – von – Eigener Rufname – Nachricht – Kommen",
+      "Inhalt – Gegenstelle – Eigener Rufname – Ende",
+      "Gegenstelle – Inhalt – Ende"
+    ],
+    correct: 1,
+    explain: "Standardaufbau im Sprechfunk: Gegenstelle, „von“, eigener Rufname, Nachricht, „Kommen“."
+  },
+  {
+    id: "q4",
+    area: "Sprechfunk – Rufgruppenwechsel",
+    source: "LZK Sprechfunker / FwDV 810: Wechsel nur auf Anordnung",
+    text: "Wann darf ein Rufgruppenwechsel durchgeführt werden?",
+    options: [
+      "Jederzeit",
+      "Nur auf Anordnung/Weisung",
+      "Immer nach Standortwechsel",
+      "Sobald der Empfang schlechter wird"
+    ],
+    correct: 1,
+    explain: "Rufgruppenwechsel nur auf besondere Weisung, mit Ankündigung/Bestätigung (Funkdisziplin)."
+  },
+  {
+    id: "q5",
+    area: "Atemschutz – Grundsatz",
+    source: "FwDV 7 / AGT: Vorgehen truppweise",
+    text: "Welcher Grundsatz gilt im Atemschutzeinsatz immer?",
+    options: [
+      "Getrennt vorgehen, um schneller zu sein",
+      "Truppweise vorgehen",
+      "Atemschutz nur bei Tageslicht",
+      "Atemschutz nur mit Wärmebildkamera"
+    ],
+    correct: 1,
+    explain: "Unter Atemschutz grundsätzlich truppweise (Eigensicherung, Hilfeleistung im Notfall)."
+  },
+  {
+    id: "q6",
+    area: "Atemschutz – Atemkrise",
+    source: "AGT-LZK: Verhalten bei Atemkrisen",
+    text: "Welche Sofortmaßnahme ist bei beginnender Atemkrise unter PA richtig?",
+    options: [
+      "Maske absetzen",
+      "Schneller und flacher atmen",
+      "Stillstehen, ruhig bleiben, tief atmen",
+      "Warnsignal ignorieren und weiterarbeiten"
+    ],
+    correct: 2,
+    explain: "Belastung reduzieren/stoppen, ruhig bleiben, kontrolliert tief atmen; ggf. melden."
+  },
+  {
+    id: "q7",
+    area: "FwDV 10 – Anstellwinkel",
+    source: "FwDV 10: 65°–75°",
+    text: "Welcher Anstellwinkel ist für Anlegeleitern einzuhalten?",
+    options: ["45°–55°","55°–65°","65°–75°","75°–85°"],
+    correct: 2,
+    explain: "FwDV 10 nennt 65°–75° als sicheren Anstellwinkel."
+  },
+  {
+    id: "q8",
+    area: "FwDV 10 – Überstand",
+    source: "FwDV 10: mind. 1 m / 3 Sprossen",
+    text: "Wie weit soll eine Anlegeleiter mindestens über die Austrittsstelle hinausragen?",
+    options: [
+      "Mind. 50 cm",
+      "Mind. 1 m bzw. mind. drei Sprossen",
+      "Genau bis zur Fensterbrüstung",
+      "Mind. 2 m"
+    ],
+    correct: 1,
+    explain: "Regel: mind. 1 m / 3 Sprossen über Austritt, sofern keine gleichwertige Haltemöglichkeit besteht."
+  },
+  {
+    id: "q9",
+    area: "Brennen & Löschen – Definition",
+    source: "TrM1-LZK: Verbrennung",
+    text: "Welche Aussage beschreibt eine Verbrennung korrekt?",
+    options: [
+      "Verbrennung ist immer eine Explosion",
+      "Reaktion zwischen brennbarem Stoff und Sauerstoff unter Wärme-/Lichtabgabe",
+      "Verdampfen von Wasser",
+      "Rein physikalischer Vorgang ohne Chemie"
+    ],
+    correct: 1,
+    explain: "Feuerwehr-Grunddefinition: chemische Reaktion Brennstoff + O2, Wärme (und oft Licht) entsteht."
+  },
+  {
+    id: "q10",
+    area: "Brennen & Löschen – Flüssigkeiten",
+    source: "TrM1-LZK: Es brennen die Dämpfe",
+    text: "Was brennt bei brennbaren Flüssigkeiten in der Regel?",
+    options: [
+      "Die Flüssigkeit selbst",
+      "Nur der Behälter",
+      "Die Dämpfe oberhalb der Flüssigkeit",
+      "Immer nur eine feste Oberflächenschicht"
+    ],
+    correct: 2,
+    explain: "Bei Flüssigkeiten brennt typischerweise die Gasphase (Dämpfe)."
+  },
+  {
+    id: "q11",
+    area: "Löschmittelwahl – Fettbrand",
+    source: "Brandklassen/Löschmittelzuordnung (Truppführer/Grundausbildung)",
+    text: "Welches Löschmittel ist für einen Fettbrand (z. B. Fritteuse) am geeignetsten?",
+    options: [
+      "Wasserstrahl",
+      "CO₂-Löscher",
+      "Fettbrandlöscher (Brandklasse F)",
+      "Pulverlöscher (ABC) immer bevorzugt"
+    ],
+    correct: 2,
+    explain: "Fettbrandlöscher sind für Brandklasse F ausgelegt; Wasser kann Fettexplosion auslösen."
+  },
+  {
+    id: "q12",
+    area: "Gefahren – AAAACEEEE",
+    source: "Truppführer-LZK: Gefahren an Einsatzstellen",
+    text: "Wofür steht das erste „E“ im AAAACEEEE-Gefahrenschema?",
+    options: ["Explosion","Elektrizität","Ersticken","Epidemie"],
+    correct: 1,
+    explain: "„E“ umfasst u. a. Elektrizität (Leitungen/Anlagen unter Spannung) als wesentliche Einsatzstellengefahr."
+  },
+  {
+    id: "q13",
+    area: "TH – Rettungsgrundsatz",
+    source: "FwDV 2 / Grundausbildung TH",
+    text: "Welche Reihenfolge entspricht dem Rettungsgrundsatz im TH-Einsatz?",
+    options: [
+      "Befreien – Stabilisieren – Retten",
+      "Retten – Befreien – Stabilisieren",
+      "Retten – Stabilisieren – Befreien",
+      "Stabilisieren – Bergen – Retten"
+    ],
+    correct: 2,
+    explain: "Rettungsgrundsatz: Retten (Sofortmaßnahmen), Stabilisieren, Befreien."
+  },
+  {
+    id: "q14",
+    area: "FwDV 3 – Befehlsaufbau",
+    source: "FwDV 3: Lage–Auftrag–Mittel–Weg–Ziel",
+    text: "Welche Gliederung entspricht dem vollständigen Einsatzbefehl (FwDV 3-konform)?",
+    options: [
+      "Ziel – Mittel – Lage – Zeit",
+      "Lage – Auftrag – Mittel – Weg – Ziel",
+      "Auftrag – Lage – Ziel",
+      "Lage – Ziel – Mittel – Rückweg"
+    ],
+    correct: 1,
+    explain: "Klare Befehlsstruktur: Lage, Auftrag, Mittel, Weg, Ziel."
+  },
+  {
+    id: "q15",
+    area: "Einsatztaktik – Eigenschutz",
+    source: "Online-Phase GF: „Nie am Feuer vorbei“",
+    text: "Was ist mit dem Grundsatz „Nie am Feuer vorbei“ vorrangig gemeint?",
+    options: [
+      "Immer Außenangriff",
+      "Eigenschutz priorisieren: sichere Taktik, Rückzugsweg/Absicherung, nicht ungeschützt in Gefahrenbereiche",
+      "Wassertrupp geht immer zuerst",
+      "Nur Lüfter einsetzen, bevor Türen geöffnet werden"
+    ],
+    correct: 1,
+    explain: "Grundsatz zielt auf Eigenschutz und taktische Sicherheit (Rückzugsweg, Absicherung, Gefahrenbewusstsein)."
+  },
+  {
+    id: "q16",
+    area: "Gefahrgut – GAMS",
+    source: "Online-Phase GF: GAMS-Grundsatz",
+    text: "Welche Maßnahme steht im Gefahrguteinsatz nach dem GAMS-Grundsatz typischerweise an erster Stelle?",
+    options: ["Messen","Absperren","Sofortdekontamination","Sammelplatz einrichten"],
+    correct: 1,
+    explain: "Nach Gefahrenerkennung ist Absperren zentral, um Exposition zu verhindern und den Bereich zu kontrollieren."
+  }
+];
+
+// Ampel-Schwellen (prozentual) – anpassbar
+const THRESH_GREEN_PCT = 0.90;
+const THRESH_YELLOW_PCT = 0.70;
+
+let activeQuestions = [];  // aktuelle Quizfragen (Array von Objekten)
+let quizOrder = [];        // Reihenfolge (Array von ids)
+let answers = {};          // id -> selectedIndex
+let started = false;
+
+// ---------- Utilities ----------
+function shuffleArray(arr){
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function sampleWithoutReplacement(arr, n){
+  const copy = arr.slice();
+  shuffleArray(copy);
+  return copy.slice(0, Math.min(n, copy.length));
+}
+function escapeHtml(s){
+  return String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+// ---------- Tabs ----------
+function showTab(tab){
+  const quizTab = document.getElementById("quizTab");
+  const learnTab = document.getElementById("learnTab");
+  const bQuiz = document.getElementById("tabQuiz");
+  const bLearn = document.getElementById("tabLearn");
+
+  if(tab === "learn"){
+    learnTab.classList.add("active");
+    quizTab.style.display = "none";
+    bLearn.classList.add("active");
+    bQuiz.classList.remove("active");
+  } else {
+    learnTab.classList.remove("active");
+    quizTab.style.display = "block";
+    bQuiz.classList.add("active");
+    bLearn.classList.remove("active");
+  }
+}
+
+// ---------- Quiz Lifecycle ----------
+function startQuiz(){
+  showTab("quiz");
+  answers = {};
+  started = true;
+
+  const scope = document.getElementById("scope").value; // random16 | all
+  const mode = document.getElementById("mode").value;   // exam | learn
+  const doShuffle = document.getElementById("shuffle").checked;
+
+  // Fragenumfang wählen
+  if(scope === "random16"){
+    activeQuestions = sampleWithoutReplacement(QUESTIONS_POOL, 16);
+  } else {
+    activeQuestions = QUESTIONS_POOL.slice();
+  }
+
+  quizOrder = activeQuestions.map(q => q.id);
+  if(doShuffle) shuffleArray(quizOrder);
+
+  document.getElementById("totalText").textContent = activeQuestions.length.toString();
+  document.getElementById("statusText").textContent = (mode === "exam") ? "läuft (Prüfmodus)" : "läuft (Lernmodus)";
+  document.getElementById("result").style.display = "none";
+
+  render();
+  updateScore(false); // im Prüfmodus keine Live-Ampel erforderlich, aber Score-Anzeige ok
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function resetAll(){
+  started = false;
+  answers = {};
+  quizOrder = [];
+  activeQuestions = [];
+  document.getElementById("quiz").innerHTML = "";
+  document.getElementById("statusText").textContent = "bereit";
+  document.getElementById("scoreText").textContent = "0";
+  document.getElementById("totalText").textContent = "0";
+  setTraffic(0, 0, false);
+  document.getElementById("result").style.display = "none";
+}
+
+function setTraffic(score, total, showText){
+  const el = document.getElementById("traffic");
+  el.classList.remove("red","yellow","green");
+
+  if(!showText || !started || total === 0){
+    el.textContent = "ROT";
+    el.classList.add("red");
+    return;
+  }
+
+  const pct = score / total;
+  if(pct >= THRESH_GREEN_PCT){
+    el.textContent = "GRÜN"; el.classList.add("green");
+  } else if(pct >= THRESH_YELLOW_PCT){
+    el.textContent = "GELB"; el.classList.add("yellow");
+  } else {
+    el.textContent = "ROT"; el.classList.add("red");
+  }
+}
+
+function byIdMap(list){
+  return Object.fromEntries(list.map(q => [q.id, q]));
+}
+
+function render(){
+  const container = document.getElementById("quiz");
+  container.innerHTML = "";
+
+  const mode = document.getElementById("mode").value; // exam | learn
+  const immediateFeedback = (mode === "learn");
+
+  const order = quizOrder.length ? quizOrder : activeQuestions.map(q => q.id);
+  const byId = byIdMap(activeQuestions);
+
+  order.forEach((qid, idx) => {
+    const q = byId[qid];
+
+    const qDiv = document.createElement("div");
+    qDiv.className = "q";
+    qDiv.id = qid;
+
+    const head = document.createElement("div");
+    head.className = "qhead";
+
+    const left = document.createElement("div");
+    left.style.flex = "1";
+
+    const topLine = document.createElement("div");
+    topLine.style.display = "flex";
+    topLine.style.gap = "10px";
+    topLine.style.alignItems = "baseline";
+
+    const qno = document.createElement("div");
+    qno.className = "qno";
+    qno.textContent = `Frage ${idx+1}`;
+
+    const qtext = document.createElement("div");
+    qtext.className = "qtext";
+    qtext.textContent = q.text;
+
+    topLine.appendChild(qno);
+    topLine.appendChild(qtext);
+
+    const src = document.createElement("div");
+    src.className = "src";
+    src.textContent = `Themenbereich: ${q.area} • Hinweis: ${q.source}`;
+
+    left.appendChild(topLine);
+    left.appendChild(src);
+    head.appendChild(left);
+    qDiv.appendChild(head);
+
+    const opts = document.createElement("div");
+    opts.className = "opts";
+
+    q.options.forEach((optText, optIdx) => {
+      const label = document.createElement("label");
+      label.className = "opt";
+
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = qid;
+      radio.value = optIdx.toString();
+      radio.checked = (answers[qid] === optIdx);
+
+      radio.addEventListener("change", () => {
+        answers[qid] = optIdx;
+        if(immediateFeedback){
+          showFeedback(qid);
+        }
+        updateScore(true);
+      });
+
+      const span = document.createElement("span");
+      span.textContent = optText;
+
+      label.appendChild(radio);
+      label.appendChild(span);
+      opts.appendChild(label);
+    });
+
+    qDiv.appendChild(opts);
+
+    const fb = document.createElement("div");
+    fb.className = "fb";
+    fb.id = qid + "_fb";
+    qDiv.appendChild(fb);
+
+    container.appendChild(qDiv);
+  });
+
+  // Footer actions
+  const footer = document.createElement("div");
+  footer.style.display = "flex";
+  footer.style.gap = "10px";
+  footer.style.flexWrap = "wrap";
+  footer.style.marginTop = "10px";
+
+  const btnCheck = document.createElement("button");
+  btnCheck.textContent = "Gesamtauswertung anzeigen";
+  btnCheck.onclick = finalize;
+
+  const btnHide = document.createElement("button");
+  btnHide.textContent = "Feedback ausblenden";
+  btnHide.className = "secondary";
+  btnHide.onclick = hideAllFeedback;
+
+  footer.appendChild(btnCheck);
+  footer.appendChild(btnHide);
+
+  container.appendChild(footer);
+}
+
+function showFeedback(qid){
+  const q = activeQuestions.find(x => x.id === qid);
+  const fb = document.getElementById(qid + "_fb");
+  const sel = answers[qid];
+
+  if(sel === undefined){
+    fb.style.display = "none";
+    fb.className = "fb";
+    fb.innerHTML = "";
+    return;
+  }
+
+  const ok = (sel === q.correct);
+  fb.className = "fb " + (ok ? "ok" : "bad");
+
+  const t = document.createElement("div");
+  t.className = "t " + (ok ? "ok" : "bad");
+  t.textContent = ok ? "Richtig." : "Falsch.";
+
+  const e = document.createElement("div");
+  e.className = "e";
+
+  const correctText = q.options[q.correct];
+  const yourText = q.options[sel];
+
+  e.innerHTML =
+    `<div><b>Deine Antwort:</b> ${escapeHtml(yourText)}</div>` +
+    `<div><b>Richtige Antwort:</b> ${escapeHtml(correctText)}</div>` +
+    `<div style="margin-top:6px;"><b>Begründung:</b> ${escapeHtml(q.explain)}</div>`;
+
+  fb.innerHTML = "";
+  fb.appendChild(t);
+  fb.appendChild(e);
+}
+
+function hideAllFeedback(){
+  activeQuestions.forEach(q => {
+    const fb = document.getElementById(q.id + "_fb");
+    if(fb){
+      fb.style.display = "none";
+      fb.className = "fb";
+      fb.innerHTML = "";
+    }
+  });
+}
+
+function updateScore(showTraffic){
+  let score = 0;
+  activeQuestions.forEach(q => {
+    if(answers[q.id] === q.correct) score++;
+  });
+
+  document.getElementById("scoreText").textContent = score.toString();
+
+  // Im Prüfmodus kannst du die Ampel erst am Ende zeigen – hier steuerbar:
+  const mode = document.getElementById("mode").value;
+  const allowTrafficNow = (mode === "learn") && showTraffic;
+
+  setTraffic(score, activeQuestions.length, allowTrafficNow);
+}
+
+function finalize(){
+  if(!started || activeQuestions.length === 0) return;
+
+  // Im Prüfmodus: jetzt Feedback zeigen
+  activeQuestions.forEach(q => showFeedback(q.id));
+
+  let score = 0;
+  let answered = 0;
+  activeQuestions.forEach(q => {
+    if(answers[q.id] !== undefined) answered++;
+    if(answers[q.id] === q.correct) score++;
+  });
+
+  const total = activeQuestions.length;
+  const missing = total - answered;
+  const pct = total ? (score / total) : 0;
+
+  let amp = "ROT";
+  if(pct >= THRESH_GREEN_PCT) amp = "GRÜN";
+  else if(pct >= THRESH_YELLOW_PCT) amp = "GELB";
+
+  const summary = document.getElementById("summary");
+  summary.innerHTML =
+    `Du hast <b>${score}</b> von <b>${total}</b> Punkten erreicht (Ampel: <b>${amp}</b>).` +
+    (missing > 0 ? ` Es fehlen noch <b>${missing}</b> Antworten.` : ``) +
+    `<div style="margin-top:8px;">Tipp: Öffne den <b>Lernteil</b> und setze die Checklisten-Haken erst, wenn du die Inhalte sicher erklären/befehlen kannst.</div>`;
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("statusText").textContent = "ausgewertet";
+
+  // Ampel jetzt immer anzeigen
+  setTraffic(score, total, true);
+
+  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+// Initial
+resetAll();
+</script>
+</body>
+</html>

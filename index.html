@@ -261,432 +261,466 @@ if(yearEl) yearEl.textContent = new Date().getFullYear();
  * - random16: zieht 16 zufällig
  * - all: kompletter Pool
  */
+
 const QUESTIONS_POOL = [
+  // ---------------- FwDV 3 (Kap. 5 / 5.4 / 5.5) ----------------
   {
-    id: "q1",
-    area: "FwDV 100 – Führungsvorgang",
-    source: "FwDV 100 (Lagefeststellung–Planung–Befehlsgebung)",
-    text: "Welche Abfolge beschreibt den Führungsvorgang nach FwDV 100 korrekt?",
+    id: "q001",
+    area: "FwDV 3 – Einsatzablauf Gruppe",
+    source: "FwDV 3 Kap. 5",
+    text: "Welche Maßnahme steht für den Gruppenführer nach dem Eintreffen grundsätzlich am Anfang?",
     options: [
-      "Entschluss – Kontrolle – Befehl",
-      "Lagefeststellung (Erkundung/Kontrolle) – Planung (Beurteilung/Entschluss) – Befehlsgebung",
-      "Befehlsgebung – Planung – Lagefeststellung",
-      "Erkundung – Angriff – Rückzug"
+      "Sofortiger Innenangriff ohne Erkundung",
+      "Erkundung und Beurteilung der Lage",
+      "Aufbau der Wasserversorgung durch den Gruppenführer",
+      "Geräteablage ohne Auftrag"
     ],
     correct: 1,
-    explain: "Führungsvorgang: Lagefeststellung, Planung (Beurteilung/Entschluss), Befehlsgebung."
+    explain: "Der Gruppenführer startet mit der Erkundung, um Gefahren, Menschenrettung und taktische Möglichkeiten zu erkennen. Erst danach formuliert er einen passenden Befehl und setzt Schwerpunkte (z. B. Menschenrettung vor Brandbekämpfung)."
   },
   {
-    id: "q2",
-    area: "Erkundung – 4 Phasen",
-    source: "Online-Phase GF: Objekt–Schaden–Gefahren–Maßnahmen",
-    text: "Welche Reihenfolge entspricht der 4-Phasen-Erkundung (GF-Kontext)?",
+    id: "q002",
+    area: "FwDV 3 – Einsatzablauf Gruppe",
+    source: "FwDV 3 Kap. 5",
+    text: "Wer bedient in der Gruppe im Regelfall die Feuerlöschkreiselpumpe?",
+    options: ["Angriffstrupp", "Wassertrupp", "Schlauchtrupp", "Maschinist"],
+    correct: 3,
+    explain: "Die Pumpenbedienung ist Kernaufgabe des Maschinisten. Er stellt die Wasserversorgung sicher, überwacht Druck/Abgänge und unterstützt damit die Strahlrohrführung und das taktische Vorgehen."
+  },
+  {
+    id: "q003",
+    area: "FwDV 3 – Einsatzablauf Gruppe",
+    source: "FwDV 3 Kap. 5",
+    text: "Welche Reihenfolge beschreibt den Führungsvorgang im Einsatz in der Praxis am besten?",
     options: [
-      "Schaden – Maßnahmen – Objekt – Gefahren",
-      "Objekt – Schaden – Gefahren – Maßnahmen",
-      "Gefahren – Objekt – Maßnahmen – Schaden",
-      "Maßnahmen – Schaden – Gefahren – Objekt"
+      "Erkundung – Entschluss/Befehl – Durchführung – Kontrolle",
+      "Durchführung – Erkundung – Befehl – Kontrolle",
+      "Befehl – Kontrolle – Erkundung – Durchführung",
+      "Erkundung – Durchführung – Befehl – Kontrolle"
     ],
-    correct: 1,
-    explain: "Struktur: Objekt → Schaden → Gefahren → Maßnahmen."
+    correct: 0,
+    explain: "Zuerst wird die Lage festgestellt (Erkundung), daraus folgt Entschluss und Befehl. Danach erfolgt die Umsetzung und fortlaufend die Kontrolle, ob die Maßnahmen wirken oder angepasst werden müssen."
   },
   {
-    id: "q3",
-    area: "Sprechfunk – Funkspruchaufbau",
-    source: "FwDV/DV 810: Gegenstelle–von–eigener Rufname–Nachricht–Kommen",
-    text: "Wie ist der Aufbau eines Funkspruchs korrekt?",
+    id: "q004",
+    area: "FwDV 3 – Einsatzablauf Gruppe",
+    source: "FwDV 3 Kap. 5",
+    text: "Welche Aufgabe hat der Melder in der Gruppe typischerweise?",
     options: [
-      "Eigener Rufname – Gegenstelle – Inhalt – Ende",
-      "Gegenstelle – von – eigener Rufname – Nachricht – Kommen",
-      "Inhalt – Gegenstelle – eigener Rufname – Ende",
-      "Gegenstelle – Inhalt – Ende"
-    ],
-    correct: 1,
-    explain: "Standardaufbau: Gegenstelle, „von“, eigener Rufname, Nachricht, „Kommen“."
-  },
-  {
-    id: "q4",
-    area: "Sprechfunk – Rufgruppenwechsel",
-    source: "FwDV/DV 810: Wechsel nur auf Weisung",
-    text: "Wann darf ein Rufgruppenwechsel durchgeführt werden?",
-    options: [
-      "Jederzeit",
-      "Nur auf Anordnung/Weisung",
-      "Immer nach Standortwechsel",
-      "Sobald der Empfang schlechter wird"
-    ],
-    correct: 1,
-    explain: "Rufgruppenwechsel nur auf besondere Weisung und mit Ankündigung/Bestätigung."
-  },
-  {
-    id: "q5",
-    area: "Atemschutz – Grundsatz",
-    source: "FwDV 7: Vorgehen truppweise",
-    text: "Welcher Grundsatz gilt im Atemschutzeinsatz immer?",
-    options: [
-      "Getrennt vorgehen, um schneller zu sein",
-      "Truppweise vorgehen",
-      "Atemschutz nur bei Tageslicht",
-      "Atemschutz nur mit Wärmebildkamera"
-    ],
-    correct: 1,
-    explain: "Unter Atemschutz grundsätzlich truppweise (Eigensicherung/Notfallhilfe)."
-  },
-  {
-    id: "q6",
-    area: "Atemschutz – Atemkrise",
-    source: "AGT-LZK: Verhalten bei Atemkrisen",
-    text: "Welche Sofortmaßnahme ist bei beginnender Atemkrise unter PA richtig?",
-    options: [
-      "Maske absetzen",
-      "Schneller und flacher atmen",
-      "Stillstehen, ruhig bleiben, tief atmen",
-      "Warnsignal ignorieren und weiterarbeiten"
+      "Pumpe bedienen",
+      "Angriffstrupp ersetzen",
+      "Unterstützung des Gruppenführers (Meldungen/Übermitteln/Organisieren)",
+      "Wasserversorgung aufbauen"
     ],
     correct: 2,
-    explain: "Belastung reduzieren/stoppen, ruhig bleiben, kontrolliert tief atmen; ggf. melden."
+    explain: "Der Melder unterstützt den Gruppenführer organisatorisch und im Meldewesen. Das kann das Weitergeben von Aufträgen, Rückmeldungen oder das Heranholen von Gerät/Informationen umfassen."
   },
   {
-    id: "q7",
+    id: "q005",
+    area: "FwDV 3 – Einsatzablauf Gruppe",
+    source: "FwDV 3 Kap. 5",
+    text: "Wann müssen Trupps an den Gruppenführer zurückmelden?",
+    options: [
+      "Nur am Einsatzende",
+      "Nach Durchführung des Auftrags oder bei wichtigen Lageänderungen",
+      "Nur wenn der Gruppenführer nachfragt",
+      "Ausschließlich per Funk"
+    ],
+    correct: 1,
+    explain: "Rückmeldungen sind nötig, um die Lagebeurteilung aktuell zu halten. Besonders wichtig sind Auftragserfüllung, Hindernisse, Gefahren, Personengefährdung und jeder Abbruchgrund."
+  },
+  {
+    id: "q006",
+    area: "FwDV 3 – Befehl",
+    source: "FwDV 3 Kap. 5.4/5.5",
+    text: "Was ist ein wesentliches Merkmal von „Einsatz mit Bereitstellung“?",
+    options: [
+      "Sofortiger Innenangriff ohne weitere Befehle",
+      "Kräfte/Trupps werden ausgerüstet und warten ohne Eigeninitiative auf Auftrag",
+      "Bereitstellung findet grundsätzlich im Gefahrenbereich statt",
+      "Bereitstellung bedeutet automatisch Rückbau"
+    ],
+    correct: 1,
+    explain: "Bereitstellung heißt: Einsatzkräfte sind einsatzbereit positioniert, handeln aber nicht eigenständig ohne Befehl. Der Gruppenführer kann so flexibel nach Lageentwicklung Kräfte gezielt einsetzen."
+  },
+  {
+    id: "q007",
+    area: "FwDV 3 – Befehl",
+    source: "FwDV 3 Kap. 5.4/5.5",
+    text: "Welche Information muss ein Gruppenführer-Befehl mindestens enthalten?",
+    options: [
+      "Wetter, Uhrzeit, Fahrzeuge",
+      "Einheit und Auftrag",
+      "Nur die Lagebeschreibung",
+      "Nur das Ziel"
+    ],
+    correct: 1,
+    explain: "Mindestens müssen Empfänger (Einheit/Trupp) und Auftrag klar sein, damit überhaupt gehandelt werden kann. Je nach Lage werden weitere Elemente wie Mittel, Weg und Ziel ergänzt, damit der Auftrag eindeutig und sicher ausführbar ist."
+  },
+  {
+    id: "q008",
+    area: "FwDV 3 – Bereitstellung",
+    source: "FwDV 3 Kap. 5.4/5.5",
+    text: "Wo wird eine Bereitstellung sinnvoll eingerichtet?",
+    options: [
+      "Direkt im Gefahrenbereich (z. B. im Brandraum)",
+      "In sicherem Bereich in einsatztaktisch sinnvoller Nähe",
+      "Grundsätzlich am Feuerwehrhaus",
+      "Immer hinter dem Einsatzleiterfahrzeug"
+    ],
+    correct: 1,
+    explain: "Bereitstellung muss sicher sein (kein unmittelbarer Gefahrenbereich), aber so gelegen, dass Kräfte schnell eingesetzt werden können. Die Position richtet sich nach Zugangswegen, Gefahren und taktischem Schwerpunkt."
+  },
+  {
+    id: "q009",
+    area: "FwDV 3 – Bereitstellung",
+    source: "FwDV 3 Kap. 5.4/5.5",
+    text: "Welche Aufgabe hat der Gruppenführer während einer Bereitstellung vorrangig?",
+    options: [
+      "Keine – er wartet ebenfalls",
+      "Lage beobachten, planen, Kräfte ordnen und Einsatzbereitschaft sicherstellen",
+      "Nur Dokumentation schreiben",
+      "Sofort Rückbau veranlassen"
+    ],
+    correct: 1,
+    explain: "Der Gruppenführer nutzt die Bereitstellungsphase zur Lagebeobachtung, Vorbereitung und Koordination. Dazu gehören auch Sicherheitsaspekte (Absperrung/Fluchtwege) und ggf. Nachforderungen."
+  },
+  {
+    id: "q010",
+    area: "FwDV 3 – Befehl/Umsetzung",
+    source: "FwDV 3 Kap. 5.5",
+    text: "Welche Aussage beschreibt „keine Eigeninitiative“ in der Bereitstellung am besten?",
+    options: [
+      "Trupps dürfen eigenständig in den Innenangriff gehen, wenn sie sich sicher fühlen",
+      "Trupps dürfen nur tätig werden, wenn ein Auftrag erteilt wurde oder eine unmittelbare Lebensgefahr abzuwehren ist",
+      "Trupps dürfen ohne Befehl nur Geräte sortieren",
+      "Trupps dürfen grundsätzlich nicht kommunizieren"
+    ],
+    correct: 1,
+    explain: "Bereitstellung bedeutet grundsätzlich: Handeln erst nach Auftrag. Ausnahme ist die Abwehr akuter, unmittelbar drohender Gefahren (Eigensicherung/lebensrettende Sofortmaßnahmen), die nicht aufschiebbar sind."
+  },
+
+  // ---------------- DV 810 (Kap. 3 und 5) ----------------
+  {
+    id: "q011",
+    area: "DV 810 – Funkspruchaufbau",
+    source: "DV 810 Kap. 3/5",
+    text: "Welche Reihenfolge ist bei einem standardisierten Funkspruch korrekt?",
+    options: [
+      "Eigener Rufname – Text – Gegenstelle",
+      "Gegenstelle – von (eigener Rufname) – Nachricht – Kommen",
+      "Nachricht – Gegenstelle – eigener Rufname – Ende",
+      "Gegenstelle – Nachricht – Ende – eigener Rufname"
+    ],
+    correct: 1,
+    explain: "Der Funkspruch beginnt mit der Gegenstelle, damit klar ist, wer angesprochen wird. Danach folgt „von …“ (eigener Rufname), anschließend die Nachricht und am Ende die Sprechaufforderung „Kommen“."
+  },
+  {
+    id: "q012",
+    area: "DV 810 – Funkdisziplin",
+    source: "DV 810 Kap. 3",
+    text: "Welcher Grundsatz gilt im BOS-Funk besonders?",
+    options: [
+      "Möglichst lange und detaillierte Funksprüche",
+      "Umgangssprache und Dialekt sind erwünscht",
+      "Kurz, klar, eindeutig – so knapp wie möglich, so vollständig wie nötig",
+      "Mehrere Inhalte gleichzeitig sprechen, um Zeit zu sparen"
+    ],
+    correct: 2,
+    explain: "Kurze, klare Funksprüche reduzieren Missverständnisse und halten den Kanal frei. Im Einsatz führt schlechte Funkdisziplin schnell zu Verzögerungen, Doppelmeldungen und Fehlern."
+  },
+  {
+    id: "q013",
+    area: "DV 810 – Betriebsarten",
+    source: "DV 810 Kap. 3/5",
+    text: "Welche Aussage zu TMO/DMO passt am besten?",
+    options: [
+      "DMO ist immer besser als TMO",
+      "TMO ist Netzmodus, DMO ist Direktmodus ohne Netz (geräte-zu-geräte)",
+      "TMO funktioniert nur im Gebäude, DMO nur im Freien",
+      "DMO nutzt immer automatisch ein Relais"
+    ],
+    correct: 1,
+    explain: "TMO (Netzbetrieb) läuft über die Infrastruktur und ist der Regelfall. DMO (Direktbetrieb) wird genutzt, wenn kein Netz verfügbar ist oder taktisch direkte Kommunikation erforderlich ist (z. B. in Objektfunk/Abschattung)."
+  },
+  {
+    id: "q014",
+    area: "DV 810 – Sprechgruppen",
+    source: "DV 810 Kap. 3/5",
+    text: "Was ist für einen Sprechgruppenwechsel im Einsatz grundsätzlich richtig?",
+    options: [
+      "Wechsel jederzeit nach eigenem Ermessen",
+      "Wechsel nur auf Weisung bzw. nach festgelegtem Funkkonzept",
+      "Wechsel ausschließlich durch den Maschinisten",
+      "Wechsel ist im Digitalfunk nicht möglich"
+    ],
+    correct: 1,
+    explain: "Sprechgruppenwechsel müssen koordiniert erfolgen, sonst gehen Einheiten „verloren“ und Meldungen erreichen die Führung nicht. Daher gilt: Wechsel nur nach Weisung oder nach klarer Funkordnung."
+  },
+  {
+    id: "q015",
+    area: "DV 810 – Meldungen",
+    source: "DV 810 Kap. 5",
+    text: "Wann ist es sinnvoll/erforderlich, eine Lagemeldung abzusetzen?",
+    options: [
+      "Nur nach Einsatzende",
+      "Bei wesentlichen Lageänderungen oder wichtigen Feststellungen",
+      "Nur wenn die Leitstelle danach fragt",
+      "Nur wenn man eine Statusmeldung nicht senden kann"
+    ],
+    correct: 1,
+    explain: "Lagemeldungen dienen der Führungsentscheidung und dem Nachführen von Kräften. Besonders wichtig sind Lageänderungen, Gefahren, Personenlage, Erfolg/Misserfolg von Maßnahmen und Ressourcenbedarf."
+  },
+  {
+    id: "q016",
+    area: "DV 810 – Verständlichkeit",
+    source: "DV 810 Kap. 3",
+    text: "Welche Maßnahme erhöht die Verständlichkeit eines Funkspruchs am meisten?",
+    options: [
+      "Sehr schnelle Sprechweise",
+      "Viele Abkürzungen ohne Standard",
+      "Kurze Sätze, Pausen, klare Struktur (wer/wo/was)",
+      "Möglichst leise sprechen"
+    ],
+    correct: 2,
+    explain: "Verständlichkeit entsteht durch Struktur und klare Sprache. Kurze Sätze und ein standardisiertes Muster (z. B. Lage–Maßnahme–Bedarf) verhindern Rückfragen und Fehlinterpretationen."
+  },
+
+  // ---------------- FwDV 7 (Kap. 7 und 9) ----------------
+  {
+    id: "q017",
+    area: "FwDV 7 – Grundsatz",
+    source: "FwDV 7 Kap. 7/9",
+    text: "In welcher Mindeststärke wird ein Atemschutztrupp eingesetzt?",
+    options: ["Einzelperson", "Trupp (2 Personen)", "Staffel", "Gruppe"],
+    correct: 1,
+    explain: "Atemschutz wird grundsätzlich truppweise eingesetzt. Das ermöglicht gegenseitige Hilfe, Kontrolle (z. B. bei Stress/Atemkrise) und erhöht die Sicherheit im Innenangriff."
+  },
+  {
+    id: "q018",
+    area: "FwDV 7 – Grundsatz",
+    source: "FwDV 7 Kap. 7/9",
+    text: "Welcher Grundsatz gilt für Atemschutztrupps im Einsatz zwingend?",
+    options: [
+      "Trupp darf sich bei Bedarf trennen",
+      "Trupp bleibt zusammen und hält ständige Verbindung (Sicht/Leine/Funk je nach Lage)",
+      "Truppführer geht immer allein vor",
+      "Sprechen ist im Innenangriff zu vermeiden"
+    ],
+    correct: 1,
+    explain: "Das Trennen des Trupps ist ein wesentlicher Sicherheitsverstoß. Zusammenbleiben und gesicherte Verbindung reduzieren das Risiko von Orientierungslosigkeit und ermöglichen schnelle Hilfe im Notfall."
+  },
+  {
+    id: "q019",
+    area: "FwDV 7 – Überwachung",
+    source: "FwDV 7 Kap. 7/9",
+    text: "Wozu dient die Atemschutzüberwachung primär?",
+    options: [
+      "Sie ersetzt die Einsatzdokumentation",
+      "Sie überwacht Trupps/Zeiten/Status und unterstützt die Sicherheit (inkl. Notfallmanagement)",
+      "Sie funkt nur Statusmeldungen an die Leitstelle",
+      "Sie ist nur bei Übungen erforderlich"
+    ],
+    correct: 1,
+    explain: "Atemschutzüberwachung stellt sicher, dass Trupps erfasst, kontrolliert und bei Problemen schnell erkannt werden. Sie ist ein wesentliches Sicherheitsinstrument, insbesondere bei mehreren Trupps oder unübersichtlichen Lagen."
+  },
+  {
+    id: "q020",
+    area: "FwDV 7 – Abbruchkriterien",
+    source: "FwDV 7 Kap. 7/9",
+    text: "Welcher Punkt ist ein typischer Abbruchgrund im Atemschutzeinsatz?",
+    options: ["Gute Sicht", "Sinkender Luftvorrat/Reservegrenze erreicht", "Auftrag beginnt", "Trupp ist motiviert"],
+    correct: 1,
+    explain: "Sinkender Luftvorrat ist ein sicherheitskritischer Faktor: Rückweg und Reserve müssen gewährleistet sein. Abbruch ist auch bei Orientierungsverlust, Gerätedefekt, Verletzung oder gefährlicher Lageentwicklung geboten."
+  },
+  {
+    id: "q021",
+    area: "FwDV 7 – Verhalten in Notlagen",
+    source: "FwDV 7 Kap. 7/9",
+    text: "Wie reagiert man bei beginnender Atemkrise/Stress unter Atemschutz am sinnvollsten?",
+    options: [
+      "Sofort Maske abnehmen",
+      "Weiterlaufen, um schneller rauszukommen",
+      "Anhalten, beruhigen/Atmung kontrollieren, Lage melden, geordnet zurückziehen",
+      "Hinlegen und warten, ohne zu melden"
+    ],
+    correct: 2,
+    explain: "Atemkrise verschlechtert sich durch Hektik. Ziel ist: Ruhe herstellen, kontrolliert atmen, Kommunikation und geordneter Rückzug bzw. Unterstützung anfordern."
+  },
+  {
+    id: "q022",
+    area: "FwDV 7 – Personelle Voraussetzungen",
+    source: "FwDV 7 (Allgemeine Anforderungen)",
+    text: "Welche Aussage zu Anforderungen an Atemschutzgeräteträger ist richtig?",
+    options: [
+      "Mindestalter 16 Jahre genügt",
+      "Körperliche Eignung wird einmalig festgestellt und gilt lebenslang",
+      "Einsatz nur bei erfüllten persönlichen/medizinischen Voraussetzungen und Ausbildung",
+      "Bart im Dichtbereich ist zulässig, wenn die Maske fest genug sitzt"
+    ],
+    correct: 2,
+    explain: "Atemschutz setzt fachliche Ausbildung und gesundheitliche Eignung voraus. Faktoren wie fehlender Maskendichtsitz (z. B. Bart im Dichtbereich) sind Ausschlussgründe, weil sie die Schutzwirkung aufheben."
+  },
+
+  // ---------------- FwDV 10 (Kap. 4, 6, 7, 8) ----------------
+  {
+    id: "q023",
+    area: "FwDV 10 – Anlegeleiter",
+    source: "FwDV 10 Kap. 6",
+    text: "Welche Mindestüberhöhung soll eine Anlegeleiter über die Austrittsstelle haben, wenn keine gleichwertige Haltemöglichkeit vorhanden ist?",
+    options: ["0,5 m", "1 m / mindestens drei Sprossen", "2 m", "Keine Vorgabe"],
+    correct: 1,
+    explain: "Die Überhöhung (ca. 1 m bzw. mindestens drei Sprossen) schafft einen sicheren Haltebereich beim Übersteigen. Gibt es gleichwertige Haltemöglichkeiten (z. B. Geländer/Laibung), kann es ausreichen, wenn die Leiter bis zur Überstiegshöhe reicht."
+  },
+  {
+    id: "q024",
     area: "FwDV 10 – Anstellwinkel",
-    source: "FwDV 10: 65°–75°",
-    text: "Welcher Anstellwinkel ist für Anlegeleitern einzuhalten?",
-    options: ["45°–55°","55°–65°","65°–75°","75°–85°"],
+    source: "FwDV 10 Kap. 6",
+    text: "Welcher Anstellwinkel ist bei Anlegeleitern einzuhalten?",
+    options: ["45°", "60°", "65–75°", "90°"],
     correct: 2,
-    explain: "Sicherer Anstellwinkel: 65°–75°."
+    explain: "Der Winkel 65–75° ist ein Kompromiss aus Standfestigkeit und sicherem Steigen. Zu flach rutscht die Leiter leichter weg, zu steil steigt das Kipp-/Rutschrisiko und die Belastung am Leiterfuß."
   },
   {
-    id: "q8",
-    area: "FwDV 10 – Überstand",
-    source: "FwDV 10: mind. 1 m / 3 Sprossen",
-    text: "Wie weit soll eine Anlegeleiter mindestens über die Austrittsstelle hinausragen (wenn keine gleichwertige Haltemöglichkeit vorhanden ist)?",
-    options: [
-      "Mind. 50 cm",
-      "Mind. 1 m bzw. mind. drei Sprossen",
-      "Genau bis zur Fensterbrüstung",
-      "Mind. 2 m"
-    ],
-    correct: 1,
-    explain: "Regel: mind. 1 m/3 Sprossen; sonst nur bis Überstieg, wenn gleichwertige Haltemöglichkeit besteht."
-  },
-  {
-    id: "q9",
-    area: "Brennen & Löschen – Definition",
-    source: "Grundausbildung: Verbrennung",
-    text: "Welche Aussage beschreibt eine Verbrennung korrekt?",
-    options: [
-      "Verbrennung ist immer eine Explosion",
-      "Reaktion zwischen brennbarem Stoff und Sauerstoff unter Wärme-/Lichtabgabe",
-      "Verdampfen von Wasser",
-      "Rein physikalischer Vorgang ohne Chemie"
-    ],
-    correct: 1,
-    explain: "Verbrennung = chemische Reaktion Brennstoff + Sauerstoff mit Energieabgabe."
-  },
-  {
-    id: "q10",
-    area: "Brennen & Löschen – Flüssigkeiten",
-    source: "Grundausbildung: Es brennen die Dämpfe",
-    text: "Was brennt bei brennbaren Flüssigkeiten in der Regel?",
-    options: [
-      "Die Flüssigkeit selbst",
-      "Nur der Behälter",
-      "Die Dämpfe oberhalb der Flüssigkeit",
-      "Immer nur eine feste Oberflächenschicht"
-    ],
-    correct: 2,
-    explain: "Bei Flüssigkeiten brennt typischerweise die Gasphase (Dämpfe)."
-  },
-  {
-    id: "q11",
-    area: "Löschmittelwahl – Fettbrand",
-    source: "Brandklassen/Löschmittelzuordnung",
-    text: "Welches Löschmittel ist für einen Fettbrand (z. B. Fritteuse) am geeignetsten?",
-    options: [
-      "Wasserstrahl",
-      "CO₂-Löscher",
-      "Fettbrandlöscher (Brandklasse F)",
-      "Pulverlöscher (ABC) immer bevorzugt"
-    ],
-    correct: 2,
-    explain: "Für Brandklasse F: Fettbrandlöscher; Wasser ist gefährlich (Fettexplosion)."
-  },
-  {
-    id: "q12",
-    area: "Gefahren – AAAACEEEE",
-    source: "Truppführer-LZK: Gefahren an Einsatzstellen",
-    text: "Wofür steht das erste „E“ im AAAACEEEE-Gefahrenschema?",
-    options: ["Explosion","Elektrizität","Ersticken","Epidemie"],
-    correct: 1,
-    explain: "„E“ umfasst u. a. Elektrizität als Einsatzstellengefahr."
-  },
-  {
-    id: "q13",
-    area: "TH – Rettungsgrundsatz",
-    source: "Grundausbildung TH: Rettungsgrundsatz (vollständig)",
-    text: "Welche Abfolge entspricht dem Rettungsgrundsatz im technischen Hilfeleistungseinsatz?",
-    options: [
-      "Sichern – Zugang schaffen – Lebensrettende Sofortmaßnahmen – Befreien – Übergabe an den Rettungsdienst",
-      "Retten – Stabilisieren – Bergen",
-      "Befreien – Retten – Absichern",
-      "Zugang schaffen – Bergen – Retten"
-    ],
-    correct: 0,
-    explain: "Rettungsgrundsatz im TH: Sichern, Zugang schaffen, lebensrettende Sofortmaßnahmen, Befreien, Übergabe an RD."
-  },
-  {
-    id: "q14",
-    area: "FwDV 3 – Befehlsaufbau",
-    source: "FwDV 3: Lage–Auftrag–Mittel–Weg–Ziel",
-    text: "Welche Gliederung entspricht dem vollständigen Einsatzbefehl (FwDV 3-konform)?",
-    options: [
-      "Ziel – Mittel – Lage – Zeit",
-      "Lage – Auftrag – Mittel – Weg – Ziel",
-      "Auftrag – Lage – Ziel",
-      "Lage – Ziel – Mittel – Rückweg"
-    ],
-    correct: 1,
-    explain: "Befehl: Lage, Auftrag, Mittel, Weg, Ziel."
-  },
-  {
-    id: "q15",
-    area: "Einsatztaktik – Eigenschutz",
-    source: "Online-Phase GF: „Nie am Feuer vorbei“",
-    text: "Was ist mit dem Grundsatz „Nie am Feuer vorbei“ vorrangig gemeint?",
-    options: [
-      "Immer Außenangriff",
-      "Eigenschutz priorisieren: sichere Taktik, Rückzugsweg/Absicherung, nicht ungeschützt in Gefahrenbereiche",
-      "Wassertrupp geht immer zuerst",
-      "Nur Lüfter einsetzen, bevor Türen geöffnet werden"
-    ],
-    correct: 1,
-    explain: "Gemeint ist v. a. taktischer Eigenschutz und sichere Vorgehensweise."
-  },
-  {
-    id: "q16",
-    area: "Gefahrgut – GAMS",
-    source: "GAMS: Grundsatz im Gefahrguteinsatz",
-    text: "Was ist der erste Schritt im GAMS-Grundsatz bei Gefahrguteinsätzen?",
-    options: [
-      "Gefahr erkennen",
-      "Absperren",
-      "Menschenrettung",
-      "Spezialkräfte nachfordern"
-    ],
-    correct: 0,
-    explain: "GAMS beginnt mit „Gefahr erkennen“, dann Absperren, Menschenrettung, Spezialkräfte."
-  },
-
-  /* --- Erweiterung q17–q32 --- */
-
-  {
-    id: "q17",
-    area: "FwDV/DV 810 – Gruppenruf vs. Einzelruf",
-    source: "DV 810: grundsätzlich Gruppenruf",
-    text: "Welche Aussage trifft auf den Sprechfunkverkehr im Einsatz grundsätzlich zu?",
-    options: [
-      "Einzelruf ist Standard, Gruppenruf nur bei Übungen",
-      "Grundsätzlich Gruppenruf; Einzelruf nur, wenn taktisch unbedingt erforderlich",
-      "Immer Sammelruf an alle BOS",
-      "Einzelruf ist vorzuziehen, um Funkverkehr zu reduzieren"
-    ],
-    correct: 1,
-    explain: "Grundsatz: Gruppenruf ist Standard; Einzelruf nur, wenn taktisch zwingend."
-  },
-  {
-    id: "q18",
-    area: "FwDV/DV 810 – Gesprächsende",
-    source: "DV 810: Gespräch wird mit „Ende“ beendet",
-    text: "Mit welchem Wort beendet der Anrufende ein Funkgespräch korrekt?",
-    options: ["Schluss", "Over", "Ende", "Aus"],
-    correct: 2,
-    explain: "Das Gespräch wird durch den Anrufenden mit „Ende“ beendet."
-  },
-  {
-    id: "q19",
-    area: "FwDV/DV 810 – TMO/DMO",
-    source: "DV 810: TMO bevorzugt, DMO bei Notwendigkeit/fehlender Versorgung",
-    text: "Welche Aussage zu TMO und DMO ist korrekt?",
-    options: [
-      "DMO ist grundsätzlich zu bevorzugen, weil es schneller ist",
-      "TMO wird bevorzugt; DMO bei taktischer Notwendigkeit oder unzureichender Funkversorgung",
-      "TMO funktioniert nur im Gebäude",
-      "DMO ist nur für Leitstellen reserviert"
-    ],
-    correct: 1,
-    explain: "Kommunikation vorzugsweise im Netzbetrieb (TMO); bei Bedarf/fehlender Versorgung DMO."
-  },
-  {
-    id: "q20",
-    area: "FwDV 10 – Einordnung Leitern",
-    source: "FwDV 10: Tragbare Leitern sind Rettungsgeräte",
-    text: "Zu welcher Gerätegruppe gehören tragbare Leitern nach FwDV 10?",
-    options: ["Angriffsgeräte", "Rettungsgeräte", "Absperrgeräte", "Messgeräte"],
-    correct: 1,
-    explain: "Tragbare Leitern gehören zur Gruppe der Rettungsgeräte."
-  },
-  {
-    id: "q21",
+    id: "q025",
     area: "FwDV 10 – Kommandos",
-    source: "FwDV 10: Kommandos gibt der Truppführer",
+    source: "FwDV 10 Kap. 5",
     text: "Wer gibt bei der Vor- und Rücknahme tragbarer Leitern die Kommandos?",
-    options: ["Maschinist", "Gruppenführer", "Truppführer", "Melder"],
+    options: ["Gruppenführer", "Maschinist", "Truppführer", "Der erfahrenste Feuerwehrangehörige"],
     correct: 2,
-    explain: "Kommandos gibt der Truppführer, der den Befehl vom Einheitsführer erhalten hat."
+    explain: "Die Kommandos gibt der Truppführer, der den Auftrag zur Leitervornahme vom Einheitsführer erhält. So sind klare Verantwortlichkeiten und ein einheitlicher Ablauf gewährleistet."
   },
   {
-    id: "q22",
-    area: "FwDV 10 – Einsatzmöglichkeiten",
-    source: "FwDV 10: Rettungsweg, Angriffsweg, Hilfsgerät",
-    text: "Wofür können tragbare Leitern eingesetzt werden?",
+    id: "q026",
+    area: "FwDV 10 – Steckleiter",
+    source: "FwDV 10 Kap. 7",
+    text: "Welche Aussage zur Vornahme der Steckleiter (durch drei Feuerwehrangehörige) ist richtig?",
     options: [
-      "Nur als Rettungsweg",
-      "Rettungsweg, Angriffsweg und Hilfsgerät",
-      "Nur als Angriffsweg",
-      "Nur als Arbeitsplattform"
+      "Es wird nur das benötigte Leiterteil vom Fahrzeug genommen",
+      "Grundsätzlich werden alle Steckleiterteile entnommen und zur Anleiterstelle getragen",
+      "Die Steckleiter wird immer im Fahrzeug zusammengesteckt",
+      "Die Leiter wird mit Schlauchleitungen dauerhaft auf der Leiter betrieben"
     ],
     correct: 1,
-    explain: "Tragbare Leitern: Rettungsweg, Angriffsweg und Hilfsgerät."
+    explain: "Für einen zügigen und flexiblen Ablauf werden grundsätzlich alle Steckleiterteile zur Anleiterstelle gebracht. Erst dort entscheidet der Truppführer über die tatsächlich benötigte Anzahl, um Zeitverlust zu vermeiden."
   },
   {
-    id: "q23",
-    area: "FwDV 100 – Lagebeschreibung",
-    source: "FwDV 100: Lagebeschreibung enthält u. a. Kräfte und Bereitstellung",
-    text: "Welche Information gehört nach FwDV 100 typischerweise in eine Lagebeschreibung?",
+    id: "q027",
+    area: "FwDV 10 – Einsatzgrundsätze",
+    source: "FwDV 10 Kap. 6",
+    text: "Welche Aussage ist als Einsatzgrundsatz für tragbare Leitern korrekt?",
     options: [
-      "Nur die Anschrift des Objekts",
-      "Nur die Wetterlage",
-      "Übersicht über Gefahren/Schäden sowie eingesetzte und in Bereitstellung stehende Kräfte/Mittel",
-      "Nur die Namen der Führungskräfte"
+      "Leiterfüße dürfen auf Kisten/Steinhaufen aufgesetzt werden, wenn es schneller geht",
+      "Leitern müssen nicht gesichert werden, wenn nur eine Person steigt",
+      "Leiterfüße dürfen nicht auf ungeeignete Unterlagen; ggf. gegen Wegrutschen/Einsinken sichern",
+      "Schlauchleitungen dürfen grundsätzlich auf Leitern verlegt werden"
     ],
     correct: 2,
-    explain: "Lagebeschreibung: Gefahren/Schäden, Einsatzschwerpunkte, eingesetzte und bereitstehende Kräfte/Mittel."
+    explain: "Der Leiterfuß muss auf tragfähigem, geeignetem Untergrund stehen; provisorische Erhöhungen sind gefährlich. Bei Bedarf ist gegen Wegrutschen oder Einsinken zu sichern, um Absturz- und Kippgefahr zu reduzieren."
   },
+
+  // ---------------- FwDV 2 – Brennen & Löschen / Löschmittelwahl ----------------
   {
-    id: "q24",
-    area: "FwDV 100 – Befehlsstruktur (erweitert)",
-    source: "FwDV 100: Gliederung des Befehls (Lage/Auftrag/Durchführung/Versorgung/Führung u. Kommunikation)",
-    text: "Welche Gliederung ist nach FwDV 100 für einen umfassenderen schriftlichen Befehl typisch?",
+    id: "q028",
+    area: "FwDV 2 – Grundlagen Verbrennung",
+    source: "FwDV 2 (Brennen und Löschen)",
+    text: "Welche drei Voraussetzungen benötigt eine Verbrennung (klassisch)?",
     options: [
-      "Lage – Auftrag – Durchführung – Versorgung – Führung und Kommunikationswesen",
-      "Ziel – Zeit – Ort – Unterschrift",
-      "Auftrag – Lage – Rückweg",
-      "Erkundung – Angriff – Nachbereitung"
-    ],
-    correct: 0,
-    explain: "Erweiterte Gliederung: Lage, Auftrag, Durchführung, Versorgung, Führung/Kommunikationswesen."
-  },
-  {
-    id: "q25",
-    area: "Atemschutz – Einsatzvoraussetzungen",
-    source: "FwDV 7: Atemschutz bei Gefahr durch Atemgifte/Sauerstoffmangel",
-    text: "Wann müssen im Einsatz geeignete Atemschutzgeräte getragen werden?",
-    options: [
-      "Wenn es regnet",
-      "Wenn Sauerstoffmangel oder Einatmen gesundheitsschädlicher Stoffe (Atemgifte) möglich ist",
-      "Nur bei Kaminbränden",
-      "Nur wenn die Leitstelle es ausdrücklich anordnet"
+      "Brennstoff – Wasser – Wärme",
+      "Sauerstoff – Brennstoff – Zündenergie/Wärme",
+      "Rauch – Flamme – Luft",
+      "Kohlenstoff – Stickstoff – Wasser"
     ],
     correct: 1,
-    explain: "Atemschutz ist erforderlich bei möglichem O2-Mangel oder Atemgiften."
+    explain: "Verbrennung braucht Brennstoff, Sauerstoff und Zündenergie (Wärme). Löschmittel greifen an diesen Voraussetzungen an – z. B. kühlen (Wärme entziehen) oder ersticken (Sauerstoff verdrängen/abdecken)."
   },
   {
-    id: "q26",
-    area: "Atemschutz – Einsatzberechtigung",
-    source: "FwDV 7: Anforderungen an AGT",
-    text: "Welche Aussage ist eine Voraussetzung, um als Atemschutzgeräteträger im Einsatz eingesetzt zu werden?",
-    options: [
-      "Beliebiges Alter, wenn fit",
-      "Mindestens 18 Jahre und erfolgreiche AGT-Ausbildung",
-      "Nur Gruppenführer dürfen PA tragen",
-      "G26 ist optional"
-    ],
+    id: "q029",
+    area: "FwDV 2 – Brandklassen",
+    source: "FwDV 2 (Brennen und Löschen)",
+    text: "Welche Brandklasse betrifft brennbare Flüssigkeiten (z. B. Benzin, Alkohol)?",
+    options: ["A", "B", "C", "D"],
     correct: 1,
-    explain: "Voraussetzung u. a.: Mindestalter 18 und erfolgreiche Ausbildung (plus Eignung)."
+    explain: "Brandklasse B umfasst brennbare Flüssigkeiten und flüssig werdende Stoffe. Taktisch wichtig ist, dass häufig nicht die Flüssigkeit selbst, sondern Dämpfe/Gase brennen und eine Abdeckung mit Schaum sinnvoll ist."
   },
   {
-    id: "q27",
-    area: "Gefahren – Elektrizität (Grundprinzip)",
-    source: "Truppführer-LZK: Sicherheitsabstände/Elektrizität",
-    text: "Was ist bei wahrgenommener Gefahr durch Elektrizität an der Einsatzstelle vorrangig richtig?",
-    options: [
-      "Sofort mit Wasserstrahl löschen",
-      "Unverzüglich dem Einheitsführer melden und Sicherheitsabstände einhalten",
-      "Metallteile als Erdung einsetzen",
-      "Schnell das Objekt betreten, um Zeit zu sparen"
-    ],
+    id: "q030",
+    area: "FwDV 2 – Löschmittelwahl",
+    source: "FwDV 2 (Brennen und Löschen)",
+    text: "Welche Hauptlöschwirkung hat Wasser im Regelfall?",
+    options: ["Ersticken", "Kühlen", "Inhibieren", "Neutralisieren"],
     correct: 1,
-    explain: "Elektrische Gefahr: melden und Abstand/Sicherung; weitere Maßnahmen lageabhängig."
+    explain: "Wasser wirkt hauptsächlich durch Kühlen (Wärmeentzug) und senkt so die Temperatur unter die Zünd-/Entzündungstemperatur. Nebenwirkungen wie Verdampfung/Verdrängung können ergänzend wirken, stehen aber nicht im Vordergrund."
+  },
+
+  // ---------------- AAAACEEEE (Gefahren an der Einsatzstelle) ----------------
+  {
+    id: "q031",
+    area: "FwDV 2 – Gefahren (AAAACEEEE)",
+    source: "FwDV 2 Kap. 2.2 (Verhalten bei Gefahren)",
+    text: "Wofür steht das erste „A“ im AAAACEEEE-Schema typischerweise?",
+    options: ["Absturz", "Atemgifte", "Auslaufende Betriebsstoffe", "Angriff"],
+    correct: 1,
+    explain: "Das Schema dient der systematischen Gefahrenprüfung. Das erste „A“ steht für Atemgifte – ein häufiger, lebensbedrohlicher Faktor, der früh Atemschutz/Eigensicherung beeinflusst."
   },
   {
-    id: "q28",
-    area: "Sprechfunk – Anrufantwort",
-    source: "DV 810: Anrufantwort „Hier … kommen“",
-    text: "Wie lautet eine korrekte Anrufantwort im Digitalfunk (Standard)?",
-    options: [
-      "„Ja, ich höre“",
-      "„Hier [eigener Rufname] – kommen“",
-      "„Verstanden – Ende“",
-      "„Sofort“"
-    ],
+    id: "q032",
+    area: "FwDV 2 – Gefahren (AAAACEEEE)",
+    source: "FwDV 2 Kap. 2.2 (Verhalten bei Gefahren)",
+    text: "Welcher Buchstabe im AAAACEEEE-Schema steht für „Elektrizität“?",
+    options: ["C", "E", "A", "S"],
     correct: 1,
-    explain: "Anrufantwort besteht aus „Hier“, eigenem Rufnamen und „Kommen“."
+    explain: "„E“ steht für Elektrizität und taucht im Einsatz häufig (Freileitungen, Hausanschlüsse, PV, Bahnanlagen) auf. Maßnahmen sind u. a. Abstand halten, Bereich sichern und Freischalten veranlassen."
+  },
+
+  // ---------------- Rettungsgrundsatz / TH ----------------
+  {
+    id: "q033",
+    area: "FwDV 2 – Rettungsgrundsatz (TH)",
+    source: "FwDV 2 (Technische Hilfeleistung)",
+    text: "Was hat im Einsatz grundsätzlich oberste Priorität?",
+    options: ["Sachwerte", "Umweltschutz", "Menschenrettung", "Brandbekämpfung"],
+    correct: 2,
+    explain: "Menschenrettung hat Vorrang vor allen anderen Zielen. Taktisch bedeutet das: Zugangswege schaffen, lebensrettende Sofortmaßnahmen und zügige Übergabe an den Rettungsdienst, ohne die Eigensicherung zu vernachlässigen."
   },
   {
-    id: "q29",
-    area: "Sprechfunk – Empfangsbestätigung",
-    source: "DV 810: „Verstanden“ + Wiederholung wesentlicher Inhalte",
-    text: "Wie wird eine empfangene Nachricht korrekt bestätigt?",
+    id: "q034",
+    area: "FwDV 2 – Rettungsgrundsatz (TH)",
+    source: "FwDV 2 (Technische Hilfeleistung)",
+    text: "Welche Reihenfolge entspricht am ehesten einem sauberen Rettungsvorgehen bei TH (z. B. VU)?",
     options: [
-      "Mit „OK“ ohne Wiederholung",
-      "Mit „Verstanden“ und Wiederholung der wesentlichen Inhalte",
-      "Mit „Ende“",
-      "Gar nicht, um Funkzeit zu sparen"
+      "Bergen – Retten – Schützen",
+      "Sichern – Zugang schaffen – lebensrettende Sofortmaßnahmen – Befreien – Übergabe an RD",
+      "Schützen – Bergen – Retten",
+      "Löschen – Retten – Bergen"
     ],
     correct: 1,
-    explain: "Empfang bestätigen: „Verstanden“ + Wiederholung wesentlicher Inhalte."
+    explain: "Bei TH beginnt alles mit der Eigensicherung und Einsatzstellensicherung (z. B. Verkehr, Brandschutz, Stabilisierung). Danach folgen Zugang, medizinisch relevante Sofortmaßnahmen, patientengerechtes Befreien und die Übergabe an den Rettungsdienst."
+  },
+
+  // ---------------- Schutzabstände elektrische Anlagen ----------------
+  {
+    id: "q035",
+    area: "Elektrische Anlagen – Grundsatz",
+    source: "FwDV 2 Kap. 2.2 (Elektrizität) / Praxisregel",
+    text: "Warum sind Schutzabstände zu elektrischen Anlagen und Freileitungen so wichtig?",
+    options: [
+      "Nur wegen Hitzeentwicklung",
+      "Wegen möglicher Lichtbögen/Stromüberschlag auch ohne Berührung",
+      "Weil Leitungen mechanisch reißen können",
+      "Nur wegen Lärm"
+    ],
+    correct: 1,
+    explain: "Bei Hochspannung kann es zu Stromüberschlag/Lichtbogen kommen, auch ohne direkte Berührung. Schutzabstände und Absperrung verhindern, dass Personen oder Geräte in den Gefahrenbereich geraten."
   },
   {
-    id: "q30",
-    area: "Gefahrgut – Sofortdekontamination",
-    source: "Online-Phase GF: Sofortdekontamination",
-    text: "Was ist das Ziel einer Sofortdekontamination im Gefahrguteinsatz?",
-    options: [
-      "Vollständige Labor-Reinheit herstellen",
-      "Exposition schnell reduzieren (Kontamination verdünnen/abspülen), um Gesundheitsgefahr zu senken",
-      "Einsatzkräfte optisch reinigen",
-      "Nur Dokumentationspflicht erfüllen"
-    ],
+    id: "q036",
+    area: "Elektrische Anlagen – Maßnahmen",
+    source: "FwDV 2 Kap. 2.2 (Elektrizität) / Praxisregel",
+    text: "Welche Maßnahme hat bei einer elektrischen Gefährdung grundsätzlich Vorrang, bevor gezielt gearbeitet wird?",
+    options: ["Vollstrahl Wasser abgeben", "Freischalten veranlassen und Bereich sichern", "Metallgeräte ansetzen", "Leitung herunterziehen"],
     correct: 1,
-    explain: "Sofortdekontamination dient der schnellen Expositionsreduktion."
-  },
-  {
-    id: "q31",
-    area: "Brennen & Löschen – Löschprinzip",
-    source: "Grundausbildung: Löschwirkungen",
-    text: "Welche Maßnahme entspricht dem Löschprinzip „Kühlen“ am ehesten?",
-    options: [
-      "Sauerstoff verdrängen (CO₂)",
-      "Wärme entziehen (z. B. Wasser zur Kühlung fester Stoffe)",
-      "Chemische Inhibition mit Pulver immer",
-      "Brennstoff zuführen"
-    ],
-    correct: 1,
-    explain: "„Kühlen“ = Wärme entziehen, Temperatur unter Zündtemperatur bringen."
-  },
-  {
-    id: "q32",
-    area: "FwDV 10 – Verkehrswege",
-    source: "FwDV 10: Leitern an Verkehrswegen absichern",
-    text: "Was ist beim Aufstellen von Leitern an oder auf Verkehrswegen besonders zu beachten?",
-    options: [
-      "Keine Absicherung nötig, Leiter ist sichtbar",
-      "Ausreichende Absicherung des Verkehrsbereichs",
-      "Leiterfuß auf Kisten stellen, damit es höher ist",
-      "Leiter immer waagerecht auflegen"
-    ],
-    correct: 1,
-    explain: "Leitern an Verkehrswegen müssen ausreichend abgesichert werden."
+    explain: "Vorrangig ist: Gefahrenbereich absperren und Freischalten durch Betreiber/EVU veranlassen. Erst wenn die Anlage sicher ist (und geerdet/kurzgeschlossen bzw. freigegeben), werden weitere Maßnahmen durchgeführt."
   }
 ];
 
